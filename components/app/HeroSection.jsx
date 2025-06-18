@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 import '@fontsource/prompt/500.css';
 import '@fontsource-variable/montserrat';
 import Link from "next/link";
-import { FaPlay } from 'react-icons/fa';
+import { MdPlayArrow } from "react-icons/md";
 import { MOBILEBREAKPOINT, TITLE } from "@/lib/constants";
 
 const fadeIn = keyframes`
@@ -122,7 +122,7 @@ export default function HeroSection() {
       <WatchNowSection>
         <Link href={"/home"} style={{ textDecoration: "none" }}>
           <ButtonWatchNow>
-            <FaPlay />
+            <MdPlayArrow size={20} />
             Scopri i film
           </ButtonWatchNow>
         </Link>
