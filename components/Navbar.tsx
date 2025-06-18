@@ -1,16 +1,86 @@
 'use client'
 
-import styled from "styled-components"
-const mobileBreakpoint = '767px'
+import Link from "next/link";
+import styled from "styled-components";
+import '@fontsource/prompt/500.css';
+import { MOBILEBREAKPOINT, TITLE } from "@/lib/constants";
 
-const Title = styled.h1`
+const NavigationBar = styled.div`
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+
+  /* background-color: red; */
+
+  @media (max-width: ${MOBILEBREAKPOINT}) {
+    padding: 0;
+    height: auto;
+  }
+`;
+
+const AppNameWrapper = styled.div`
+  padding: 20px;
+  box-sizing: border-box;
+`;
+
+
+const AppName = styled.span`
+  color: white;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 500;
   font-size: 25px;
-  color: red;
+
+  @media (max-width: ${MOBILEBREAKPOINT}) {
+    font-size: 20px;
+  }
+`;
+
+const Social = styled.div`
+  padding: 20px;
+  box-sizing: border-box;
+`;
+
+const ButtonAccount = styled.div`
+  border-radius: 16px;
+  height: 42px;
+  background-color: #E2E2B6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  box-sizing: border-box;
+  color: #161c29;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #000000;
+    color: white;
+  }
 `;
 
 export default function Navbar() {
   return (
-    <div>
-    </div>
+    <NavigationBar>
+      <AppNameWrapper>
+        <AppName>
+          <Link href="/">
+            {TITLE}
+          </Link>
+        </AppName>
+      </AppNameWrapper>
+      <Social>
+        <a href="https://github.com/moreee-sa/VersusUI" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }} >
+          <ButtonAccount>
+            Account
+          </ButtonAccount>
+        </a>
+      </Social>
+    </NavigationBar>
   )
 }
