@@ -15,7 +15,7 @@ export default async function HomePage() {
 
   try {
     const res = await fetch("http://192.168.1.221:8000/movies", {
-      cache: "no-store",
+      // cache: "no-store",
     });
 
     if (!res.ok) {
