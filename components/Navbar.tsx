@@ -75,11 +75,11 @@ export default function Navbar() {
         </AppName>
       </AppNameWrapper>
       <Social>
-        <a href="https://github.com/moreee-sa/VersusUI" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }} >
+        <Link href="/profile">
           <ButtonAccount>
             Account
           </ButtonAccount>
-        </a>
+        </Link>
       </Social>
     </NavigationBar>
   )
