@@ -7,12 +7,8 @@ export default function HomeLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="it">
-      <body>
-        <Suspense fallback={<Loading />}>
-          {children}
-        </Suspense>
-      </body>
-    </html>
+    <Suspense fallback={<Loading />}>
+      {children}
+    </Suspense>
   )
 }
