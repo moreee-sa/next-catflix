@@ -3,7 +3,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import '@fontsource/prompt/500.css';
-import { MOBILEBREAKPOINT, TITLE } from "@/lib/constants";
+import { MOBILEBREAKPOINT, TITLE, VERSIONE } from "@/lib/constants";
 
 const NavigationBar = styled.div`
   height: 100px;
@@ -34,6 +34,18 @@ const AppName = styled.span`
 
   @media (max-width: ${MOBILEBREAKPOINT}) {
     font-size: 20px;
+  }
+`;
+
+const VersionNumber = styled.span`
+  color: white;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  margin-left: 4px;
+
+  @media (max-width: ${MOBILEBREAKPOINT}) {
+    font-size: 10px;
   }
 `;
 
@@ -71,6 +83,9 @@ export default function Navbar() {
         <AppName>
           <Link href="/">
             {TITLE}
+            <VersionNumber>
+              v{VERSIONE}
+            </VersionNumber>
           </Link>
         </AppName>
       </AppNameWrapper>
