@@ -42,7 +42,7 @@ const BackButton = styled.div`
 export default function NotFound() {
   return (
     <div className='w-full flex justify-center items-center flex-col gap-5' style={{ minHeight: "50vh" }}>
-      <ErrorTitle>Errore connessione</ErrorTitle>
+      <ErrorTitle>Errore connessione API</ErrorTitle>
       <Link href="/">
         <BackButton>
           Torna indietro
