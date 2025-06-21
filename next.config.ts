@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "192.168.1.221",
         port: "8000",
-        pathname: "/poster/**",  // o "/**" per permettere più percorsi
+        pathname: "/**", // Permette tutte le immagini (poster, backdrop, ecc.)
       },
     ],
   },
