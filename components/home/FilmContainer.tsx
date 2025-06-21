@@ -5,9 +5,13 @@ import styled from "styled-components";
 import Image from "next/image";
 
 const Grid = styled.div`
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   max-width: 100%;
   margin: 0 auto;
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 type Film = {
@@ -19,9 +23,9 @@ type Film = {
   blurDataURL?: string;
 };
 
-const Container = styled.div`
-  height: 300px;
-  width: 200px;
+const CardContainer = styled.div`
+  width: 100%;
+  aspect-ratio: 2 / 3;
 `;
 
 interface FilmContainerProps {
@@ -33,18 +37,19 @@ export default function FilmContainer({ movies }: FilmContainerProps) {
     <Grid className="grid gap-5 p-5 justify-center">
       {movies.map((movie, index) => (
         <Link key={movie._id} href={`/movie/${movie.id_tmdb}`}>
-          <Container className="rounded-2xl relative">
+          <CardContainer className="rounded-2xl relative">
             <Image
               src={`http://192.168.1.221:8000/poster/${movie.poster_path}`}
               alt={movie.title}
               fill
-              sizes="(max-width: 768px) 100vw, 200px"
+              sizes="(max-width: 768px) 50vw, 200px"
               priority={index === 0}
               placeholder={movie.blurDataURL ? "blur" : "empty"}
               blurDataURL={movie.blurDataURL}
-              style={{ objectFit: "cover", borderRadius: "12px" }}
+              style={{ objectFit: "cover" }}
+              className="rounded-2xl"
             />
-          </Container>
+          </CardContainer>
         </Link>
       ))}
     </Grid>
