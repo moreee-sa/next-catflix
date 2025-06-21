@@ -1,4 +1,5 @@
 import MoviePage from "@/components/movie/MoviePage";
+import { getBlurData } from "@/lib/getBlurData";
 
 type Film = {
   _id: string;
@@ -26,14 +27,18 @@ export default async function MovieSlug({
 
     const movie: Film = await res.json();
 
-    return (
-      <MoviePage
-        id_tmdb={movie.id_tmdb}
-        title={movie.title}
-        overview={movie.overview}
-        backdrop_path={movie.backdrop_path}
-      />
-    );
+    try {
+      const imageUrl = `http://192.168.1.221:8000/backdrop/${movie.backdrop_path}`;
+      const blurDataURL = await getBlurData(imageUrl);
+      return (
+        <MoviePage movie={movie} blurDataURL={blurDataURL} />
+      )
+    } catch (e) {
+      return (
+        <MoviePage movie={movie} />
+      )
+    }
+
   } catch (error) {
     console.error("Errore di rete o parsing:", error);
     return <div>Errore nel caricamento</div>;

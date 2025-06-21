@@ -27,33 +27,36 @@ const TitleMovie = styled.span`
   color: white;
 `;
 
-type MoviePageProps = {
+interface Film {
+  _id: string;
   id_tmdb: number;
   title: string;
   overview: string;
   backdrop_path: string;
+}
+
+type MoviePageProps = {
+  movie: Film;
+  blurDataURL?: string;
 };
 
-export default function MoviePage({
-  id_tmdb,
-  title,
-  overview,
-  backdrop_path
-}: MoviePageProps) {
+export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
   return (
     <Container>
       <ContainerInfo>
         <ImageContainer className="relative">
           <Image
-            src={`http://192.168.1.221:8000/backdrop/${backdrop_path}`}
-            alt={title}
+            src={`http://192.168.1.221:8000/backdrop/${movie.backdrop_path}`}
+            alt={movie.title}
             fill
             style={{ objectFit: "cover", borderRadius: "8px 8px 0 0" }}
             priority
+            placeholder={blurDataURL ? "blur" : "empty"}
+            blurDataURL={blurDataURL}
           />
         </ImageContainer>
         <TitleMovie>
-          {title}
+          {movie.title}
         </TitleMovie>
       </ContainerInfo>
     </Container>
