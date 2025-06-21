@@ -30,13 +30,15 @@ interface FilmContainerProps {
 export default function FilmContainer({ movies }: FilmContainerProps) {
   return (
     <Grid className="grid gap-5 p-5 justify-center">
-      {movies.map((movie: any) => (
+      {movies.map((movie, index) => (
         <Link key={movie._id} href={`/movie/${movie.id_tmdb}`}>
           <Container className="rounded-2xl relative">
             <Image
               src={`http://192.168.1.221:8000/poster/${movie.poster_path}`}
               alt={movie.title}
               fill
+              sizes="(max-width: 768px) 100vw, 200px"
+              priority={index === 0} // solo la prima ha priority
               style={{ objectFit: "cover", borderRadius: "12px" }}
             />
           </Container>
