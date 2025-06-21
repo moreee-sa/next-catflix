@@ -1,5 +1,6 @@
 import MoviePage from "@/components/movie/MoviePage";
 import { getBlurData } from "@/lib/getBlurData";
+import { redirect } from 'next/navigation';
 
 type Film = {
   _id: string;
@@ -18,7 +19,7 @@ export default async function MovieSlug({
   const id_tmdb = Number(slug);
 
   try {
-    const res = await fetch(`http://192.168.1.221:8000/movie/${slug}`);
+    const res = await fetch(`http://192.168.1.221:8000/movie/${id_tmdb}`);
 
     if (!res.ok) {
       console.error("Errore nella risposta:", res.status);
@@ -41,6 +42,6 @@ export default async function MovieSlug({
 
   } catch (error) {
     console.error("Errore di rete o parsing:", error);
-    return <div>Errore nel caricamento</div>;
+    redirect('/home');
   }
 }
