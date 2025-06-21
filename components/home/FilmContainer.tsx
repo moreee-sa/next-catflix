@@ -16,6 +16,7 @@ type Film = {
   title: string;
   overview: string;
   poster_path: string;
+  blurDataURL?: string;
 };
 
 const Container = styled.div`
@@ -38,7 +39,9 @@ export default function FilmContainer({ movies }: FilmContainerProps) {
               alt={movie.title}
               fill
               sizes="(max-width: 768px) 100vw, 200px"
-              priority={index === 0} // solo la prima ha priority
+              priority={index === 0}
+              placeholder={movie.blurDataURL ? "blur" : "empty"}
+              blurDataURL={movie.blurDataURL}
               style={{ objectFit: "cover", borderRadius: "12px" }}
             />
           </Container>
