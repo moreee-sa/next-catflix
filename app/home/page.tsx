@@ -22,7 +22,6 @@ export default async function HomePage() {
     const data = await res.json();
     const movies: Film[] = data.Film.Film;
 
-    // Aggiungi blurDataURL a ogni film
     const moviesWithBlur = await Promise.all(
       movies.map(async (movie) => {
         const imageUrl = `http://192.168.1.221:8000/poster/${movie.poster_path}`;
