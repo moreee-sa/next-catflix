@@ -3,6 +3,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
+import { APIURL } from "@/lib/constants";
 
 const Grid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -39,7 +40,7 @@ export default function FilmContainer({ movies }: FilmContainerProps) {
         <Link key={movie._id} href={`/movie/${movie.id_tmdb}`}>
           <CardContainer className="rounded-2xl relative">
             <Image
-              src={`http://192.168.1.221:8000/poster/${movie.poster_path}`}
+              src={`${APIURL}/poster/${movie.poster_path}`}
               alt={movie.title}
               fill
               sizes="(max-width: 768px) 50vw, 200px"

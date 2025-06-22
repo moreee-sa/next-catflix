@@ -2,6 +2,7 @@
 
 import styled from "styled-components"
 import Image from "next/image";
+import { APIURL } from "@/lib/constants";
 
 const Container = styled.div`
   width: 100%;
@@ -43,7 +44,7 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
       <ContainerInfo>
         <ImageContainer className="relative">
           <Image
-            src={`http://192.168.1.221:8000/backdrop/${movie.backdrop_path}`}
+            src={`${APIURL}/backdrop/${movie.backdrop_path}`}
             alt={movie.title}
             fill
             style={{ objectFit: "cover", objectPosition: "top", borderRadius: "8px 8px 0 0" }}
