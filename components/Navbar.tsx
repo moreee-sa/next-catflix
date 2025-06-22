@@ -10,9 +10,6 @@ const NavigationBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 50px;
-
-  /* background-color: red; */
 
   @media (max-width: ${MOBILEBREAKPOINT}) {
     padding: 0;
