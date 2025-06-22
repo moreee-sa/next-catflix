@@ -2,8 +2,31 @@
 
 :root {
   --bs-body-bg: #160023 !important; /* Background - Color */
+  --scrollbar-color: #160023;
+  --handle-color:#1B2B50;
 }
 
 body {
   background-color: var(--bs-body-bg);
+}
+
+/* larghezza barra */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Sfondo barra */
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-color);
+}
+
+/* Colore 'maniglia' */
+::-webkit-scrollbar-thumb {
+  background: var(--handle-color);
+  border-radius: 8px;
+}
+
+/* Colore 'maniglia' al passaggio del mouse */
+::-webkit-scrollbar-thumb:hover {
+  background: white;
 }
