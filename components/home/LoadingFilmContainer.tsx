@@ -1,13 +1,14 @@
 'use client'
 
 import styled from "styled-components";
+import { MOBILEBREAKPOINT } from "@/lib/constants";
 
 const Grid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   max-width: 100%;
   margin: 0 auto;
 
-  @media (max-width: 767px) {
+  @media (max-width: ${MOBILEBREAKPOINT}) {
     grid-template-columns: repeat(2, 1fr);
   }
 `;

@@ -3,14 +3,14 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
-import { APIURL } from "@/lib/constants";
+import { MOBILEBREAKPOINT, APIURL } from "@/lib/constants";
 
 const Grid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   max-width: 100%;
   margin: 0 auto;
 
-  @media (max-width: 767px) {
+  @media (max-width: ${MOBILEBREAKPOINT}) {
     grid-template-columns: repeat(2, 1fr);
   }
 `;
@@ -43,7 +43,7 @@ export default function FilmContainer({ movies }: FilmContainerProps) {
               src={`${APIURL}/poster/${movie.poster_path}`}
               alt={movie.title}
               fill
-              sizes="(max-width: 768px) 50vw, 200px"
+              sizes={`(max-width: ${MOBILEBREAKPOINT}) 50vw, 200px`}
               priority={index === 0}
               placeholder={movie.blurDataURL ? "blur" : "empty"}
               blurDataURL={movie.blurDataURL}
