@@ -20,7 +20,7 @@ const MovieLayout = styled.div`
   height: 80vh;
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
-    flex-direction: column-reverse;
+    flex-direction: column;
     height: auto;
   }
 `;
@@ -38,7 +38,7 @@ const BackdropContainer = styled.div`
   position: relative;
   width: 60%; /* 60% dello spazio */
   height: 100%;
-  border-radius: 0px 11px 11px 0px;
+  border-radius: 11px 0px 0px 11px;
   overflow: hidden;
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
@@ -55,7 +55,7 @@ const BackdropOverlay = styled.div`
   height: 100%;
   width: 100%;
   pointer-events: none;
-  background: linear-gradient(90deg,rgba(22, 0, 35, 1) 20%, rgba(0, 0, 0, 0) 40%);
+  background: linear-gradient(270deg,rgba(22, 0, 35, 1) 20%, rgba(0, 0, 0, 0) 40%);
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
     background: none;
@@ -83,9 +83,6 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
   return (
     <PageWrapper>
       <MovieLayout>
-        <MovieDetailsPanel>
-          {movie.title}
-        </MovieDetailsPanel>
         <BackdropContainer>
           <Image
             src={`${APIURL}/backdrop/${movie.backdrop_path}`}
@@ -95,9 +92,12 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
             priority
             placeholder={blurDataURL ? "blur" : "empty"}
             blurDataURL={blurDataURL}
-          />
+            />
           <BackdropOverlay />
         </BackdropContainer>
+        <MovieDetailsPanel>
+          {movie.title}
+        </MovieDetailsPanel>
       </MovieLayout>
     </PageWrapper>
   )
