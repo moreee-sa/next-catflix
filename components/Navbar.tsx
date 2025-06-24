@@ -11,7 +11,7 @@ const NavigationBar = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media (max-width: ${MOBILEBREAKPOINT}) {
+  @media only screen and (max-width: ${MOBILEBREAKPOINT}) {
     padding: 0;
     height: auto;
   }
@@ -29,7 +29,7 @@ const AppName = styled.span`
   font-weight: 500;
   font-size: 25px;
 
-  @media (max-width: ${MOBILEBREAKPOINT}) {
+  @media only screen and (max-width: ${MOBILEBREAKPOINT}) {
     font-size: 20px;
   }
 `;
@@ -41,7 +41,7 @@ const VersionNumber = styled.span`
   font-size: 15px;
   margin-left: 4px;
 
-  @media (max-width: ${MOBILEBREAKPOINT}) {
+  @media only screen and (max-width: ${MOBILEBREAKPOINT}) {
     font-size: 10px;
   }
 `;
