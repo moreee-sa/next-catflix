@@ -109,11 +109,12 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
             src={`${APIURL}/backdrop/${movie.backdrop_path}`}
             alt={movie.title}
             fill
-            style={{ objectFit: "cover", objectPosition: "right" }}
+            sizes="(max-width: 960px) 100vw, 60vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
             priority
             placeholder={blurDataURL ? "blur" : "empty"}
             blurDataURL={blurDataURL}
-            />
+          />
           <BackdropOverlay />
         </BackdropContainer>
         <MovieDetailsPanel>
