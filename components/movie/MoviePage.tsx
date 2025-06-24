@@ -2,7 +2,9 @@
 
 import styled from "styled-components"
 import Image from "next/image";
-import { APIURL, TABLETBREAKPOINT } from "@/lib/constants";
+import '@fontsource-variable/montserrat';
+import '@fontsource/prompt/500.css';
+import { APIURL, MOBILEBREAKPOINT, TABLETBREAKPOINT } from "@/lib/constants";
 
 const PageWrapper = styled.div`
   width: 100%;
@@ -28,6 +30,7 @@ const MovieLayout = styled.div`
 const MovieDetailsPanel = styled.div`
   background-color: rgba(22, 0, 35, 1);
   width: 40%; /* 40% dello spazio */
+  padding: 20px;
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
     width: 100%;
@@ -55,15 +58,33 @@ const BackdropOverlay = styled.div`
   height: 100%;
   width: 100%;
   pointer-events: none;
-  background: linear-gradient(270deg,rgba(22, 0, 35, 1) 20%, rgba(0, 0, 0, 0) 40%);
+  background: linear-gradient(90deg,rgba(0, 0, 0, 0) 80%, rgba(22, 0, 35, 1) 100%);
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
     background: none;
   }
 `;
 
-const TitleMovie = styled.span`
-  color: white;
+const MovieTitle = styled.h1`
+  color: #EAEAEA;
+  font-weight: 500;
+  font-family: 'Prompt', sans-serif;
+  font-size: 50px;
+
+  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
+    font-size: 25px;
+  }
+`;
+
+const MovieDescription = styled.p`
+  color: #BBBBBB;
+  font-weight: 300;
+  font-family: 'Montserrat Variable', sans-serif;
+  font-size: 18px;
+
+  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
+    font-size: 15px;
+  }
 `;
 
 interface Film {
@@ -88,7 +109,7 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
             src={`${APIURL}/backdrop/${movie.backdrop_path}`}
             alt={movie.title}
             fill
-            style={{ objectFit: "cover", objectPosition: "top" }}
+            style={{ objectFit: "cover", objectPosition: "right" }}
             priority
             placeholder={blurDataURL ? "blur" : "empty"}
             blurDataURL={blurDataURL}
@@ -96,7 +117,8 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
           <BackdropOverlay />
         </BackdropContainer>
         <MovieDetailsPanel>
-          {movie.title}
+          <MovieTitle>{movie.title}</MovieTitle>
+          <MovieDescription>{movie.overview}</MovieDescription>
         </MovieDetailsPanel>
       </MovieLayout>
     </PageWrapper>
