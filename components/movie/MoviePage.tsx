@@ -4,9 +4,8 @@ import styled from "styled-components"
 import Image from "next/image";
 import { APIURL, TABLETBREAKPOINT } from "@/lib/constants";
 
-const Container = styled.div`
+const PageWrapper = styled.div`
   width: 100%;
-  height: 100vh;
   padding: 20px;
   /* background-color: red; */
 
@@ -15,39 +14,41 @@ const Container = styled.div`
   }
 `;
 
-const ContainerInfo = styled.div`
+const MovieLayout = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 80vh;
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
     flex-direction: column-reverse;
+    height: auto;
   }
 `;
 
-const LeftInfo = styled.div`
+const MovieDetailsPanel = styled.div`
   background-color: rgba(22, 0, 35, 1);
-  height: 100%;
-  width: 40%;  /* 40% dello spazio */
+  width: 40%; /* 40% dello spazio */
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
     width: 100%;
   }
 `;
 
-const RightInfo = styled.div`
-  background-color: #721d1d;
-  height: 100%;
-  width: 60%;
+const BackdropContainer = styled.div`
   position: relative;
+  width: 60%; /* 60% dello spazio */
+  height: 100%;
   border-radius: 0px 11px 11px 0px;
+  overflow: hidden;
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
     width: 100%;
+    height: 40vh;
+    border-radius: 0;
   }
 `;
 
-const FadeOverlay = styled.div`
+const BackdropOverlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -80,12 +81,12 @@ type MoviePageProps = {
 
 export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
   return (
-    <Container>
-      <ContainerInfo>
-        <LeftInfo>
+    <PageWrapper>
+      <MovieLayout>
+        <MovieDetailsPanel>
           {movie.title}
-        </LeftInfo>
-        <RightInfo>
+        </MovieDetailsPanel>
+        <BackdropContainer>
           <Image
             src={`${APIURL}/backdrop/${movie.backdrop_path}`}
             alt={movie.title}
@@ -95,9 +96,9 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
             placeholder={blurDataURL ? "blur" : "empty"}
             blurDataURL={blurDataURL}
           />
-          <FadeOverlay />
-        </RightInfo>
-      </ContainerInfo>
-    </Container>
+          <BackdropOverlay />
+        </BackdropContainer>
+      </MovieLayout>
+    </PageWrapper>
   )
 }
