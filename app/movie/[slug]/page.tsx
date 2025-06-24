@@ -9,6 +9,9 @@ type Film = {
   title: string;
   overview: string;
   backdrop_path: string;
+  release_date: string;
+  vote_average: number;
+  runtime: number;
 };
 
 export default async function MovieSlug({

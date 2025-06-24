@@ -76,6 +76,11 @@ const MovieTitle = styled.h1`
   }
 `;
 
+const MovieDetails = styled.span`
+  color: white;
+  font-family: 'Prompt', sans-serif;
+`;
+
 const MovieDescription = styled.p`
   color: #BBBBBB;
   font-weight: 300;
@@ -93,6 +98,9 @@ interface Film {
   title: string;
   overview: string;
   backdrop_path: string;
+  release_date: string;
+  vote_average: number;
+  runtime: number;
 }
 
 type MoviePageProps = {
