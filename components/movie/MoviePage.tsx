@@ -5,6 +5,7 @@ import Image from "next/image";
 import '@fontsource-variable/montserrat';
 import '@fontsource/prompt/500.css';
 import { APIURL, MOBILEBREAKPOINT, TABLETBREAKPOINT } from "@/lib/constants";
+import MovieDetails from "./MovieDetails";
 
 const PageWrapper = styled.div`
   width: 100%;
@@ -76,10 +77,6 @@ const MovieTitle = styled.h1`
   }
 `;
 
-const MovieDetails = styled.span`
-  color: white;
-  font-family: 'Prompt', sans-serif;
-`;
 
 const MovieDescription = styled.p`
   color: #BBBBBB;
@@ -127,6 +124,11 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
         </BackdropContainer>
         <MovieDetailsPanel>
           <MovieTitle>{movie.title}</MovieTitle>
+          <MovieDetails movie={movie} />
+          {/* <MovieDescription>{new Date(movie.release_date).getFullYear()}</MovieDescription>
+          <MovieDescription>{movie.vote_average}</MovieDescription>
+          <MovieDescription>{movie.runtime}</MovieDescription> */}
+
           <MovieDescription>{movie.overview}</MovieDescription>
         </MovieDetailsPanel>
       </MovieLayout>
