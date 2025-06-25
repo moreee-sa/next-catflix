@@ -78,7 +78,7 @@ const MovieTitle = styled.h1`
 `;
 
 
-const MovieDescription = styled.p`
+const MovieOverview = styled.p`
   color: #BBBBBB;
   font-weight: 300;
   font-family: 'Montserrat Variable', sans-serif;
@@ -125,11 +125,7 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
         <MovieDetailsPanel>
           <MovieTitle>{movie.title}</MovieTitle>
           <MovieDetails movie={movie} />
-          {/* <MovieDescription>{new Date(movie.release_date).getFullYear()}</MovieDescription>
-          <MovieDescription>{movie.vote_average}</MovieDescription>
-          <MovieDescription>{movie.runtime}</MovieDescription> */}
-
-          <MovieDescription>{movie.overview}</MovieDescription>
+          <MovieOverview>{movie.overview}</MovieOverview>
         </MovieDetailsPanel>
       </MovieLayout>
     </PageWrapper>
