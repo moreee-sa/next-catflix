@@ -73,19 +73,7 @@ const MovieTitle = styled.h1`
   font-size: 50px;
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
-    font-size: 25px;
-  }
-`;
-
-
-const MovieOverview = styled.p`
-  color: #BBBBBB;
-  font-weight: 300;
-  font-family: 'Montserrat Variable', sans-serif;
-  font-size: 18px;
-
-  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
-    font-size: 15px;
+    font-size: 28px;
   }
 `;
 
@@ -125,7 +113,6 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
         <MovieDetailsPanel>
           <MovieTitle>{movie.title}</MovieTitle>
           <MovieDetails movie={movie} />
-          <MovieOverview>{movie.overview}</MovieOverview>
         </MovieDetailsPanel>
       </MovieLayout>
     </PageWrapper>
