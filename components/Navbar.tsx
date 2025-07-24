@@ -78,7 +78,7 @@ export default function Navbar() {
     <NavigationBar>
       <AppNameWrapper>
         <AppName>
-          <Link href="/">
+          <Link href="/home">
             {TITLE}
             <VersionNumber>
               v{VERSIONE}
