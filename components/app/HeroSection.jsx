@@ -26,6 +26,7 @@ const MainContent = styled.div`
   justify-content: center;
   box-sizing: border-box;
   padding: 80px;
+  height: 100vh;
 
   @media (max-width: ${MOBILEBREAKPOINT}) {
     align-items: flex-start;
@@ -96,16 +97,6 @@ const ButtonWatchNow = styled.div`
     background-color: #d8d8ba;
     box-shadow: 0px 0px 40px 1px #e2e2b67d;
   }
-`;
-
-const GuideSectionLink = styled.div`
-  margin-top: 20px;
-  color: #C0C0C0;
-  font-family: 'Montserrat Variable', sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  opacity: 0;
-  animation: ${fadeIn} 1s ease-out 600ms forwards;
 `;
 
 export default function HeroSection() {
