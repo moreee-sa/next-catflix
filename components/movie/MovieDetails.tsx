@@ -8,7 +8,7 @@ import { useState, useEffect } from "react"
 const Details = styled.span`
   color: white;
   font-family: 'Montserrat Variable', sans-serif;
-  font-size: 18px;
+  font-size: 15px;
 `;
 
 const MovieOverview = styled.p`
