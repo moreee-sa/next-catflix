@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+const nextConfig: NextConfig & { allowedDevOrigins?: string[] } = {
   compiler: {
     styledComponents: true,
   },
@@ -10,10 +10,14 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "0.0.0.0",
         port: "8000",
-        pathname: "/**", // Permette tutte le immagini (poster, backdrop, ecc.)
+        pathname: "/**",
       },
     ],
   },
+  allowedDevOrigins: [
+    "http://192.168.1.221:3000",
+    "http://localhost:3000",
+  ],
 };
 
 export default nextConfig;
