@@ -3,7 +3,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import '@fontsource/prompt/500.css';
-import { MOBILEBREAKPOINT, TITLE, VERSIONE } from "@/lib/constants";
+import { MOBILEBREAKPOINT, TABLETBREAKPOINT, TITLE, VERSIONE } from "@/lib/constants";
 
 const NavigationBar = styled.div`
   height: 100px;
@@ -11,9 +11,12 @@ const NavigationBar = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
+    height: 80px;
+  }
+
   @media only screen and (max-width: ${MOBILEBREAKPOINT}) {
     padding: 0;
-    height: auto;
   }
 `;
 
