@@ -41,8 +41,8 @@ const MovieDetailsPanel = styled.div`
 const BackdropContainer = styled.div`
   position: relative;
   width: 60%; /* 60% dello spazio */
-  height: 100%;
-  border-radius: 11px 0px 0px 11px;
+  height: 80%;
+  border-radius: 8px 0px 0px 8px;
   overflow: hidden;
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
@@ -111,7 +111,7 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
           <BackdropOverlay />
         </BackdropContainer>
         <MovieDetailsPanel>
-          <MovieTitle>{movie.title}</MovieTitle>
+          <MovieTitle>{movie.title.toLocaleUpperCase()}</MovieTitle>
           <MovieDetails movie={movie} />
         </MovieDetailsPanel>
       </MovieLayout>
