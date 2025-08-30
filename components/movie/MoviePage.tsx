@@ -20,7 +20,7 @@ const PageWrapper = styled.div`
 const MovieLayout = styled.div`
   display: flex;
   width: 100%;
-  height: 80vh;
+  /* min-height: 60vh; */
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
     flex-direction: column;
@@ -30,8 +30,9 @@ const MovieLayout = styled.div`
 
 const MovieDetailsPanel = styled.div`
   background-color: rgba(22, 0, 35, 1);
-  width: 40%; /* 40% dello spazio */
-  padding: 20px;
+  width: 40%;
+  /* min-height: 60vh;  */
+  padding: 10px 20px;
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
     width: 100%;
@@ -40,8 +41,8 @@ const MovieDetailsPanel = styled.div`
 
 const BackdropContainer = styled.div`
   position: relative;
-  width: 60%; /* 60% dello spazio */
-  height: 80%;
+  width: 60%;
+  height: 50vh;
   border-radius: 8px 0px 0px 8px;
   overflow: hidden;
 
@@ -74,6 +75,22 @@ const MovieTitle = styled.h1`
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
     font-size: 28px;
+  }
+`;
+
+const LayoutWatch = styled.div`
+  /* background-color: black; */
+  height: 40px;
+`;
+
+const LayoutRecommended = styled.div`
+  padding: 20px 0;
+  height: 300px;
+  width: 100%;
+  background-color: red;
+
+  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
+    padding: 20px;
   }
 `;
 
@@ -115,6 +132,10 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
           <MovieDetails movie={movie} />
         </MovieDetailsPanel>
       </MovieLayout>
+
+      <LayoutRecommended>
+        <h1>Correlati</h1>
+      </LayoutRecommended>
     </PageWrapper>
   )
 }

@@ -1,9 +1,12 @@
 'use client'
 
-import styled from "styled-components"
-import '@fontsource-variable/montserrat'
-import { TABLETBREAKPOINT, MAXDETAILS} from "@/lib/constants"
-import { useState, useEffect } from "react"
+import styled from "styled-components";
+import Link from "next/link";
+import { FaPlay } from "react-icons/fa";
+import '@fontsource/prompt/500.css';
+import '@fontsource-variable/montserrat';
+import { TABLETBREAKPOINT, MAXDETAILS} from "@/lib/constants";
+import { useState, useEffect } from "react";
 
 const Details = styled.span`
   color: white;
@@ -16,6 +19,7 @@ const MovieOverview = styled.p`
   font-weight: 400;
   font-family: 'Montserrat Variable', sans-serif;
   font-size: 18px;
+  margin-top: 15px;
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {
     font-size: 15px;
@@ -29,6 +33,28 @@ const PulsanteLeggiTutto = styled.button`
   &:hover {
     color: #eeeeee;
     cursor: pointer;
+  }
+`;
+
+const PulsanteGuarda = styled.div`
+  border-radius: 8px;
+  height: 42px;
+  width: 144px;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 15px;
+  color: #161c29;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #000000;
+    color: white;
   }
 `;
 
@@ -54,6 +80,7 @@ function formatRuntime(minutes: number): string {
 }
 
 export default function MovieDetails({ movie }: MovieDetailsProps) {
+  const id_movie: string = movie._id;
   const years: number = new Date(movie.release_date).getFullYear();
   const vote: string = movie.vote_average.toFixed(1);
   const runtimeFormatted: string = formatRuntime(movie.runtime);
@@ -78,7 +105,12 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
 
   return (
     <>
-      <Details>{years} • {vote} • {runtimeFormatted}</Details>
+      <div style={{ margin: "15px 0" }}>
+        <Details>{years} • {vote} • {runtimeFormatted}</Details>
+      </div>
+      <Link href={`/watch/${id_movie}`}>
+        <PulsanteGuarda><FaPlay />Guarda ora</PulsanteGuarda>
+      </Link>
       <MovieOverview>
         {mostraTutto ? movie.overview + " " : overviewSnippet}
         {lunghezza && (
