@@ -1,32 +1,96 @@
 'use client'
 
+import styled from "styled-components";
+import { APIURL, TABLETBREAKPOINT } from "@/lib/constants";
+
+const PageWrapper = styled.div`
+  width: 100%;
+  padding: 20px;
+
+  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
+    padding: 0;
+  }
+`;
+
+const MovieLayout = styled.div`
+  display: flex;
+  width: 100%;
+
+  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
+    flex-direction: column;
+    height: auto;
+  }
+`;
+
+const BackdropContainer = styled.div`
+  position: relative;
+  width: 60%;
+  height: 50vh;
+  border-radius: 8px 0px 0px 8px;
+  overflow: hidden;
+
+  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
+    width: 100%;
+    height: 40vh;
+    border-radius: 0;
+  }
+`;
+
+const MovieTitle = styled.h1`
+  height: 75px;
+
+  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
+    height: 42px;
+  }
+`;
+
+const MovieDetailsPanel = styled.div`
+  width: 40%;
+  padding: 10px 20px;
+
+  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
+    width: 100%;
+  }
+`;
+
+const PulsanteGuarda = styled.div`
+  border-radius: 8px;
+  height: 42px;
+  width: 144px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 15px;
+`;
+
 export default function MovieLoadingSkeleton() {
   return (
-    <div className="w-full p-5">
-      <div className="flex flex-col md:flex-row w-full">
-        {/* Backdrop */}
-        <div className="bg-gray-700 animate-pulse w-full md:w-3/5 h-[50vh] md:rounded-l-lg rounded-t-lg md:rounded-t-none" />
+    <PageWrapper>
+      <MovieLayout>
+        <BackdropContainer className="bg-gray-700 animate-pulse" />
 
         {/* Details Panel */}
-        <div className="bg-[#160023] w-full md:w-2/5 p-5 flex flex-col gap-4">
+        <MovieDetailsPanel>
           {/* Titolo */}
-          <div className="bg-gray-400 animate-pulse w-3/5 h-[50px] rounded-2xl" />
+          <MovieTitle className="bg-gray-400 animate-pulse w-[280px] rounded-2xl" />
 
           {/* Dettagli */}
-          <div className="w-2/5 h-4" />
-          <div className="bg-gray-500 animate-pulse w-1/3 h-4 rounded-lg" />
+          <div style={{ margin: "15px 0" }}>
+            <div className="bg-gray-500 animate-pulse w-[150px] h-[20px] rounded-lg" />
+          </div>
 
           {/* Pulsante */}
-          <div className="bg-gray-400 animate-pulse w-[144px] h-[42px] rounded-lg" />
+          <PulsanteGuarda className="bg-gray-400 animate-pulse w-[144px] h-[42px] rounded-lg" />
 
           {/* Overview */}
-          <div className="flex flex-col gap-2 mt-2">
+          <div style={{ marginTop: "15px" }} className="flex flex-col gap-2 mt-2">
             <div className="bg-gray-400 animate-pulse w-full h-4 rounded-lg" />
             <div className="bg-gray-400 animate-pulse w-11/12 h-4 rounded-lg" />
             <div className="bg-gray-400 animate-pulse w-10/12 h-4 rounded-lg" />
           </div>
-        </div>
-      </div>
-    </div>
+        </MovieDetailsPanel>
+      </MovieLayout>
+    </PageWrapper>
   )
 }
