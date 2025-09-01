@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Image from "next/image";
 import '@fontsource-variable/montserrat';
 import '@fontsource/prompt/500.css';
-import { APIURL, MOBILEBREAKPOINT, TABLETBREAKPOINT } from "@/lib/constants";
+import { APIURL, TABLETBREAKPOINT } from "@/lib/constants";
 import MovieDetails from "./MovieDetails";
 
 const PageWrapper = styled.div`
@@ -78,11 +78,6 @@ const MovieTitle = styled.h1`
   }
 `;
 
-const LayoutWatch = styled.div`
-  /* background-color: black; */
-  height: 40px;
-`;
-
 const LayoutRecommended = styled.div`
   padding: 20px 0;
   height: 300px;
@@ -133,9 +128,9 @@ export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
         </MovieDetailsPanel>
       </MovieLayout>
 
-      <LayoutRecommended>
+      {/* <LayoutRecommended>
         <h1>Correlati</h1>
-      </LayoutRecommended>
+      </LayoutRecommended> */}
     </PageWrapper>
   )
 }
