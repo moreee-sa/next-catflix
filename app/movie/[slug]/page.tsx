@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import MoviePage from "@/components/movie/MoviePage";
 import { getBlurData } from "@/lib/getBlurData";
 import { redirect } from 'next/navigation';
@@ -25,9 +26,8 @@ export default async function MovieSlug({
   try {
     const res = await fetch(`${APIURL}/movie/${id_tmdb}`);
 
-    if (!res.ok) {
-      console.error("Errore nella risposta:", res.status);
-      // not-found necessario
+    if (!res || !res.ok) {
+      notFound();
     }
 
     const movie: Film = await res.json();
@@ -45,7 +45,6 @@ export default async function MovieSlug({
     }
 
   } catch (error) {
-    console.error("Errore di rete o parsing:", error);
-    redirect('/home');
+    notFound();
   }
 }
