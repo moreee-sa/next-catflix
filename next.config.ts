@@ -8,7 +8,7 @@ const nextConfig: NextConfig & { allowedDevOrigins?: string[] } = {
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "0.0.0.0",
+        hostname: "192.168.1.221",
         port: "8000",
         pathname: "/**",
       },

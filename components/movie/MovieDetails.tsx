@@ -80,7 +80,7 @@ function formatRuntime(minutes: number): string {
 }
 
 export default function MovieDetails({ movie }: MovieDetailsProps) {
-  const id_movie: string = movie._id;
+  const id_movie: number = movie.id_tmdb;
   const years: number = new Date(movie.release_date).getFullYear();
   const vote: string = movie.vote_average.toFixed(1);
   const runtimeFormatted: string = formatRuntime(movie.runtime);
