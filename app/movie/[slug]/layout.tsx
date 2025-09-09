@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { TITLE } from "@/lib/constants";
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
