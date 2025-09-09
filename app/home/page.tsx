@@ -12,9 +12,11 @@ type Film = {
   blurDataURL?: string;
 };
 
+const pagina: number = 1;
+
 export default async function HomePage() {
   try {
-    const res = await fetch(`${APIURL}/movies`);
+    const res = await fetch(`${APIURL}/movies?pagina=1`);
 
     if (!res.ok) {
       notFound();
@@ -22,6 +24,7 @@ export default async function HomePage() {
 
     const data = await res.json();
     const movies: Film[] = data.Film.Film;
+    // console.log(movies)
 
     const moviesWithBlur = await Promise.all(
       movies.map(async (movie) => {
