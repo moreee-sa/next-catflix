@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import MoviePage from "@/components/movie/MoviePage";
 import { getBlurData } from "@/lib/getBlurData";
-import { redirect } from 'next/navigation';
 import { APIURL } from "@/lib/constants";
 
 type Film = {
