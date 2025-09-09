@@ -15,33 +15,46 @@ type Film = {
   runtime: number;
 };
 
-type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-// ===================== METADATA =====================
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const id_tmdb = Number(slug);
 
+  // Titolo di fallback
+  const fallbackTitle = "Film";
+
   try {
-    const res = await fetch(`${APIURL}/movie/${id_tmdb}`);
-    if (!res || !res.ok) return {};
+    const res = await fetch(`${APIURL}/movie/${id_tmdb}`, {
+      next: { revalidate: 3600 } // Cache per migliorare performance
+    });
+    
+    if (!res.ok) {
+      return {
+        title: `${fallbackTitle} | Catflix`,
+      };
+    }
 
     const movie: Film = await res.json();
 
     return {
-      title: movie.title,
+      title: `${movie.title} | Catflix`,
       description: movie.overview,
     };
   } catch (error) {
-    return {};
+    return {
+      title: `${fallbackTitle} | Catflix`,
+    };
   }
 }
 
-// ===================== COMPONENT =====================
-export default async function MovieSlug({ params }: { params: Promise<{ slug: string }> }) {
+export default async function MovieSlug({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const id_tmdb = Number(slug);
 
