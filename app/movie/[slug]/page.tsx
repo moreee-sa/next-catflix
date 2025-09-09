@@ -22,7 +22,7 @@ type Props = {
 
 // ===================== METADATA =====================
 export async function generateMetadata({ params }: Props) {
-  const { slug } = params;
+  const { slug } = await params;
   const id_tmdb = Number(slug);
 
   try {

@@ -4,7 +4,7 @@ export const VERSIONE: string = "0.1";
 
 // Impostazioni API
 export const LOADINGCARD: number = 50;
-export const APIURL: string = "http://192.168.1.221:8000";
+export const APIURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 // Screen Breakpoint
 export const MOBILEBREAKPOINT: string = "767px";
