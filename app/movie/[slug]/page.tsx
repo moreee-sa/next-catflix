@@ -1,6 +1,6 @@
 // app/movies/[slug]/page.tsx
 import { notFound } from "next/navigation";
-import MoviePage from "@/components/movie/MoviePage";
+import MoviePage from "@/components/movie";
 import { getBlurData } from "@/lib/getBlurData";
 import { APIURL } from "@/lib/constants";
 

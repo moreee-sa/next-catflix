@@ -1,4 +1,4 @@
-import FeaturedMovieLoading from "@/components/home/FeaturedMovieLoading";
+import FeaturedMovieLoading from "@/components/home/FeaturedMovie/FeaturedMovieLoading";
 
 export default function Loading() {
   return (
