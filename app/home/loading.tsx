@@ -1,8 +1,7 @@
-import LoadingFilmContainer from "@/components/home/LoadingFilmContainer";
-import { LOADINGCARD } from "@/lib/constants";
+import FeaturedMovieLoading from "@/components/home/FeaturedMovieLoading";
 
 export default function Loading() {
   return (
-    <LoadingFilmContainer n={LOADINGCARD} />
+    <FeaturedMovieLoading />
   )
 }

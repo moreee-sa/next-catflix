@@ -3,7 +3,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
-import { MOBILEBREAKPOINT, APIURL, TABLETBREAKPOINT} from "@/lib/constants";
+import { MOBILEBREAKPOINT, TABLETBREAKPOINT} from "@/lib/constants";
 import { FaPlay } from "react-icons/fa";
 import '@fontsource/prompt/500.css';
 import '@fontsource-variable/montserrat';
