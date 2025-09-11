@@ -39,7 +39,12 @@ export default async function HomePage() {
       const imageUrl = `${APIURL}/backdrop/${movie.backdrop_path}`;
       const blurDataURL = await getBlurData(imageUrl);
 
-      return <FeaturedMovie imageUrl={imageUrl} movie={movie} />
+      return (
+        <>
+          <FeaturedMovie movie={movie} imagebackdrop={{ imageUrl, blurDataURL }} />
+          {/* Nuovo Layout */}
+        </>
+      )
     } catch {
       notFound();
     }

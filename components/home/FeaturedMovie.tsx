@@ -124,7 +124,7 @@ const ContainerMute = styled.div`
   /* background-color: #0099ff; */
 `;
 
-type Film = {
+interface Film {
   _id: string;
   id_tmdb: number;
   title: string;
@@ -135,18 +135,30 @@ type Film = {
   runtime: number;
 };
 
-export default function FeaturedMovie({ imageUrl, movie }: { imageUrl: string, movie: Film}) {
+interface ImageBackdrop {
+  imageUrl: string;
+  blurDataURL: string;
+}
+
+type FeaturedMovieProps = {
+  movie: Film;
+  imagebackdrop: ImageBackdrop;
+}
+
+export default function FeaturedMovie({ movie, imagebackdrop }: FeaturedMovieProps) {
   return (
     // Container
     <div className="p-5">
       <ContainerFeaturedMovie className="rounded-2xl">
         <Image
-          src={imageUrl}
+          src={imagebackdrop.imageUrl}
           alt={movie.title}
           fill
           sizes="100vw"
           priority
           style={{ objectFit: "cover", borderRadius: "1rem", zIndex: 10 }}
+          placeholder={imagebackdrop.blurDataURL ? "blur" : "empty"}
+          blurDataURL={imagebackdrop.blurDataURL}
         />
         <div style={{ zIndex: "20" }}>
           {/* <ContainerGeneri></ContainerGeneri> */}
