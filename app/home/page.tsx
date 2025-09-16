@@ -3,6 +3,7 @@ import FilmContainer from "@/components/home/FilmContainer";
 import { getBlurData } from "@/lib/getBlurData";
 import { APIURL } from "@/lib/constants";
 import FeaturedMovie from "@/components/home/FeaturedMovie";
+import SliderMovie from "@/components/home/SliderMovie";
 
 // type Film = {
 //   _id: string;
@@ -42,7 +43,7 @@ export default async function HomePage() {
       return (
         <>
           <FeaturedMovie movie={movie} imagebackdrop={{ imageUrl, blurDataURL }} />
-          {/* Nuovo Layout */}
+          <SliderMovie titolo={"Titoli recenti"} />
         </>
       )
     } catch {
