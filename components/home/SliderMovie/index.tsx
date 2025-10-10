@@ -3,7 +3,9 @@
 import styled from "styled-components";
 import { useRef } from "react";
 import { MdArrowForwardIos, MdArrowBackIosNew  } from "react-icons/md";
-import { MOBILEBREAKPOINT } from "@/lib/constants";
+import { APIURL, MOBILEBREAKPOINT } from "@/lib/constants";
+import Link from "next/link";
+import Image from "next/image";
 
 const ContainerSliderMovie = styled.div`
   position: relative;
@@ -18,7 +20,7 @@ const TitoloSlider = styled.span`
 
 const CardContainer = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 20px;
   height: 250px;
   margin-top: 20px;
 
@@ -37,10 +39,7 @@ const Card = styled.div`
   background-color: blue;
   border-radius: 1rem;
   flex: 0 0 auto;
-
-  &:first-child {
-    margin-left: 20px;
-  }
+  position: relative;
 `;
 
 const ArrowButton = styled.div`
@@ -76,9 +75,21 @@ const ArrowContainer = styled.div`
   } 
 `;
 
-type SliderProps = { titolo: string; };
+type Film = {
+  _id: string;
+  id_tmdb: number;
+  title: string;
+  overview: string;
+  poster_path: string;
+  blurDataURL?: string;
+};
 
-export default function SliderMovie({ titolo }: SliderProps) {
+interface SliderProps {
+  titolo: string;
+  movies: Film[];
+}
+
+export default function SliderMovie({ titolo, movies }: SliderProps) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -104,8 +115,22 @@ export default function SliderMovie({ titolo }: SliderProps) {
             </ArrowButton>
           </ArrowContainer>
           <CardContainer ref={scrollRef}>
-            {Array.from({ length: 15 }).map((_, i) => (
-              <Card key={i} />
+            {movies.map((movie, i) => (
+            <Link key={movie._id} href={`/movie/${movie.id_tmdb}`}>
+              <Card style={{ marginLeft: i === 0 ? "20px" : "0" }} >
+                <Image
+                  src={`${APIURL}/poster/${movie.poster_path}`}
+                  alt={movie.title}
+                  fill
+                  sizes={`(max-width: ${MOBILEBREAKPOINT}) 50vw, 200px`}
+                  priority={i === 0}
+                  placeholder={movie.blurDataURL ? "blur" : "empty"}
+                  blurDataURL={movie.blurDataURL}
+                  style={{ objectFit: "cover" }}
+                  className="rounded-2xl"
+                />
+              </Card>
+            </Link>
             ))}
           </CardContainer>
         </div>

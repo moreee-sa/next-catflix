@@ -19,6 +19,7 @@ type Film = {
   id_tmdb: number;
   title: string;
   overview: string;
+  poster_path: string;
   backdrop_path: string;
   release_date: string;
   vote_average: number;
@@ -31,19 +32,40 @@ const featured = 1294203;
 
 export default async function HomePage() {
   try {
-    const res = await fetch(`${APIURL}/movie/${featured}`);
-    if (!res || !res.ok) notFound();
+    // Featured Movie
+    const res_featured = await fetch(`${APIURL}/movie/${featured}`);
+    if (!res_featured || !res_featured.ok) notFound();
+    const featured_movie: Film = await res_featured.json();
 
-    const movie: Film = await res.json();
+    // Recent Movies
+    const res_recent = await fetch(`${APIURL}/movies?pagina=1`);
+    if (!res_recent || !res_recent.ok) notFound();
+    const data = await res_recent.json();
+    const recent_movies: Film[] = data.Film.Film;
 
     try {
-      const imageUrl = `${APIURL}/backdrop/${movie.backdrop_path}`;
+      // Featured Movie BlurData
+      const imageUrl = `${APIURL}/backdrop/${featured_movie.backdrop_path}`;
       const blurDataURL = await getBlurData(imageUrl);
+
+      // Recent Movies BlurData
+      const moviesWithBlur = await Promise.all(
+        recent_movies.map(async (movie) => {
+          const imageUrl = `${APIURL}/poster/${movie.poster_path}`;
+          try {
+            const blurDataURL = await getBlurData(imageUrl);
+            console.log(blurDataURL)
+            return { ...movie, blurDataURL };
+          } catch (e) {
+            return { ...movie }; // fallback se fallisce
+          }
+        })
+      );
 
       return (
         <>
-          <FeaturedMovie movie={movie} imagebackdrop={{ imageUrl, blurDataURL }} />
-          <SliderMovie titolo={"Titoli recenti"} />
+          <FeaturedMovie movie={featured_movie} imagebackdrop={{ imageUrl, blurDataURL }} />
+          <SliderMovie movies={moviesWithBlur} titolo={"Titoli recenti"} />
         </>
       )
     } catch {
