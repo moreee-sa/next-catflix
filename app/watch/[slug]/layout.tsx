@@ -1,21 +1,21 @@
 import { TITLE } from "@/lib/constants";
-import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: "Il tuo cinema online",
 };
 
-export default function MovieLayout({
+export default function WatchLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <>
-      <Navbar />
+    <Suspense fallback={<Loading />}>
       {children}
-    </>
+    </Suspense>
   )
 }
