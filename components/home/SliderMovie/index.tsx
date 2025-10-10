@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import { useRef } from "react";
 import { MdArrowForwardIos, MdArrowBackIosNew  } from "react-icons/md";
+import { MOBILEBREAKPOINT } from "@/lib/constants";
 
 const ContainerSliderMovie = styled.div`
   position: relative;
@@ -21,7 +22,7 @@ const CardContainer = styled.div`
   height: 250px;
   margin-top: 20px;
 
-  overflow-x: auto;
+  overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
 
@@ -52,6 +53,7 @@ const ArrowButton = styled.div`
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease-in;
+  pointer-events: auto;
   
   &:hover {
     background: rgba(0,0,0,0.2);
@@ -67,6 +69,11 @@ const ArrowContainer = styled.div`
   position: absolute;
   display: flex;
   justify-content: space-between;
+  pointer-events: none;
+
+  @media (max-width: ${MOBILEBREAKPOINT}) {
+    display: none;
+  } 
 `;
 
 type SliderProps = { titolo: string; };

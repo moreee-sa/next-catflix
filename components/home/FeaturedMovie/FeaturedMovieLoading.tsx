@@ -47,7 +47,7 @@ export default function FeaturedMovieLoading() {
         <div style={{ zIndex: "20" }}>
           <ContainerDettagli>
             {/* Titolo */}
-            <div className="bg-gray-400 animate-pulse rounded-2xl h-[52] w-[380px]" />
+            <div className="bg-gray-400 animate-pulse rounded-2xl h-[52] w-[340px]" />
 
             {/* Dettagli */}
             <div style={{ marginTop: "15px" }} className="flex flex-col gap-2 mt-2">
