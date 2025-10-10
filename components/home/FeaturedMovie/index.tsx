@@ -160,9 +160,13 @@ export default function FeaturedMovie({ movie, imagebackdrop }: FeaturedMoviePro
           placeholder={imagebackdrop.blurDataURL ? "blur" : "empty"}
           blurDataURL={imagebackdrop.blurDataURL}
         />
-        <div style={{ zIndex: "20" }}>
-          {/* <ContainerGeneri></ContainerGeneri> */}
-
+        <div
+          style={{
+            zIndex: "20",
+            background: "linear-gradient(0deg,rgba(0, 0, 0, 0.4) 5%, rgba(0, 0, 0, 0.54) 35%, rgba(255, 255, 255, 0) 100%)",
+            borderRadius: "1rem"
+          }}
+        >
           <ContainerDettagli>
             <Titolo>
               {movie.title.toLocaleUpperCase()}
