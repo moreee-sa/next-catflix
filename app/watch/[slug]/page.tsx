@@ -1,5 +1,5 @@
 import { APIURL } from "@/lib/constants";
-import WatchSlugClient from "./WatchSlugClient";
+import WatchSlugClient from "../../../components/watch/VideoPlayerClient";
 import { notFound } from "next/navigation";
 
 export default async function WatchSlug({ params }: { params: Promise<{ slug: string }> }) {
