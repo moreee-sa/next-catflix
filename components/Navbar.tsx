@@ -54,7 +54,7 @@ const Social = styled.div`
   box-sizing: border-box;
 `;
 
-const ButtonAccount = styled.div`
+const ButtonAccount = styled.button`
   border-radius: 16px;
   height: 42px;
   background-color: #E2E2B6;
@@ -91,7 +91,7 @@ export default function Navbar() {
       </AppNameWrapper>
       <Social>
         <Link href="/profile">
-          <ButtonAccount>
+          <ButtonAccount disabled>
             Account
           </ButtonAccount>
         </Link>
