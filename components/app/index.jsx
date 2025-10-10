@@ -124,7 +124,7 @@ export default function HeroSection() {
             ]}
             cursor={false}
             repeat={Infinity}
-            preRenderFirstString={true}
+            preRenderFirstString={false}
           />
         </SubtitleText>
       </SubtitleSection>

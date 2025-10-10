@@ -24,7 +24,6 @@ const ContainerDettagli = styled.div`
   }
 `;
 
-
 const ContainerSpazio = styled.div`
   width: 100%;
   height: 200px;
@@ -41,19 +40,18 @@ const ContainerSpazio = styled.div`
 
 export default function FeaturedMovieLoading() {
   return (
-    // Container
     <div className="p-5 opacity-40">
       <ContainerFeaturedMovie className="bg-gray-700 rounded-2xl animate-pulse">
         <div style={{ zIndex: "20" }}>
           <ContainerDettagli>
             {/* Titolo */}
-            <div className="bg-gray-400 animate-pulse rounded-2xl h-[52] w-[340px]" />
+            <div className="bg-gray-400 animate-pulse rounded-2xl h-[48px] w-[340px] max-md:w-11/12" />
 
             {/* Dettagli */}
             <div style={{ marginTop: "15px" }} className="flex flex-col gap-2 mt-2">
-              <div className="bg-gray-400 animate-pulse w-full h-4 rounded-lg" />
-              <div className="bg-gray-400 animate-pulse w-11/12 h-4 rounded-lg" />
-              <div className="bg-gray-400 animate-pulse w-10/12 h-4 rounded-lg" />
+              <div className="bg-gray-400 animate-pulse w-9/12 h-4 rounded-lg" />
+              <div className="bg-gray-400 animate-pulse w-7/12 h-4 rounded-lg" />
+              <div className="bg-gray-400 animate-pulse w-5/12 h-4 rounded-lg" />
             </div>
           </ContainerDettagli>
           <ContainerSpazio />
