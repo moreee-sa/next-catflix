@@ -16,8 +16,7 @@ type Film = {
   runtime: number;
 };
 
-const featured = 1294203;
-const pagina: number = 1;
+const featured: number = 1294203;
 
 export default async function HomePage() {
   try {
@@ -36,6 +35,8 @@ export default async function HomePage() {
           <FeaturedMovie movie={featured_movie} imagebackdrop={{ imageUrl, blurDataURL }} />
           <div className="flex flex-col gap-5 my-5">
             <SliderMovie pagina={1} titoloCategoria="Titoli recenti" />
+            <SliderMovie pagina={2} titoloCategoria="Altri titoli" />
+            <SliderMovie pagina={3} titoloCategoria="Altri Film" />
           </div>
         </>
       )

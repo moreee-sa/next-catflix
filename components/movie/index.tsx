@@ -1,93 +1,5 @@
-'use client'
-
-import styled from "styled-components"
-import Image from "next/image";
-import '@fontsource-variable/montserrat';
-import '@fontsource/prompt/500.css';
-import { APIURL, TABLETBREAKPOINT } from "@/lib/constants";
-import MovieDetails from "./MovieDetails";
-
-const PageWrapper = styled.div`
-  width: 100%;
-  padding: 20px;
-  /* background-color: red; */
-
-  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
-    padding: 0;
-  }
-`;
-
-const MovieLayout = styled.div`
-  display: flex;
-  width: 100%;
-  /* min-height: 60vh; */
-
-  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
-    flex-direction: column;
-    height: auto;
-  }
-`;
-
-const MovieDetailsPanel = styled.div`
-  background-color: rgba(22, 0, 35, 1);
-  width: 40%;
-  /* min-height: 60vh;  */
-  padding: 10px 20px;
-
-  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
-    width: 100%;
-  }
-`;
-
-const BackdropContainer = styled.div`
-  position: relative;
-  width: 60%;
-  height: 50vh;
-  border-radius: 8px 0px 0px 8px;
-  overflow: hidden;
-
-  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
-    width: 100%;
-    height: 40vh;
-    border-radius: 0;
-  }
-`;
-
-const BackdropOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
-  background: linear-gradient(90deg,rgba(0, 0, 0, 0) 80%, rgba(22, 0, 35, 1) 100%);
-
-  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
-    background: none;
-  }
-`;
-
-const MovieTitle = styled.h1`
-  color: #EAEAEA;
-  font-weight: 500;
-  font-family: 'Prompt', sans-serif;
-  font-size: 50px;
-
-  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
-    font-size: 28px;
-  }
-`;
-
-const LayoutRecommended = styled.div`
-  padding: 20px 0;
-  height: 300px;
-  width: 100%;
-  background-color: red;
-
-  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
-    padding: 20px;
-  }
-`;
+import MovieStructure from "./MovieStructure";
+import SliderMovie from "../home/SliderMovie";
 
 interface Film {
   _id: string;
@@ -107,30 +19,10 @@ type MoviePageProps = {
 
 export default function MoviePage({ movie, blurDataURL }: MoviePageProps) {
   return (
-    <PageWrapper>
-      <MovieLayout>
-        <BackdropContainer>
-          <Image
-            src={`${APIURL}/backdrop/${movie.backdrop_path}`}
-            alt={movie.title}
-            fill
-            sizes="(max-width: 960px) 100vw, 60vw"
-            style={{ objectFit: "cover", objectPosition: "center" }}
-            priority
-            placeholder={blurDataURL ? "blur" : "empty"}
-            blurDataURL={blurDataURL}
-          />
-          <BackdropOverlay />
-        </BackdropContainer>
-        <MovieDetailsPanel>
-          <MovieTitle>{movie.title.toLocaleUpperCase()}</MovieTitle>
-          <MovieDetails movie={movie} />
-        </MovieDetailsPanel>
-      </MovieLayout>
-
-      {/* <LayoutRecommended>
-        <h1>Correlati</h1>
-      </LayoutRecommended> */}
-    </PageWrapper>
+    <div className="w-full p-5 max-md:p-0">
+      <MovieStructure movie={movie} blurDataURL={blurDataURL} />
+      <div className="w-64 h-1 mx-auto my-4 bg-gray-100 border-0 rounded-sm md:my-10 dark:bg-gray-700" />
+      <SliderMovie pagina={5} titoloCategoria="Consigliati" />
+    </div>
   )
 }
