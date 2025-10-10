@@ -95,8 +95,8 @@ export default function Navbar({ showVersion=true }: NavbarProps) {
         </AppName>
       </AppNameWrapper>
       <Social>
-        <Link href="/profile">
-          <ButtonAccount disabled>
+        <Link href="/home">
+          <ButtonAccount>
             Account
           </ButtonAccount>
         </Link>

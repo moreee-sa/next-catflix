@@ -28,7 +28,7 @@ type FeaturedMovieProps = {
 
 export default function FeaturedMovie({ movie, imagebackdrop }: FeaturedMovieProps) {
   return (
-    <div className="p-5">
+    <div className="px-5">
       <div className="rounded-2xl flex flex-col justify-between relative">
         <Image
           src={imagebackdrop.imageUrl}
