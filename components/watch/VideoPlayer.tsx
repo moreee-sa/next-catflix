@@ -1,8 +1,6 @@
 "use client";
-
-import React, { useRef, useEffect } from "react";
-import Plyr, { PlyrProps } from "plyr-react";
-import "plyr-react/plyr.css";
+import { useEffect, useRef, useState } from "react";
+import Hls from "hls.js";
 
 interface VideoPlayerProps {
   src: string;
@@ -10,46 +8,41 @@ interface VideoPlayerProps {
 }
 
 export default function VideoPlayer({ src, autoplay }: VideoPlayerProps) {
-  const ref = useRef<any>(null);
-
-  const source = {
-    type: "video" as const,
-    sources: [
-      {
-        src,
-        type: "video/mp4",
-        provider: "html5" as "html5",
-      },
-    ],
-  };
-
-  const options: PlyrProps["options"] = {
-    autoplay,
-    controls: [
-      "play-large",
-      "play",
-      "progress",
-      "current-time",
-      // "mute",
-      // "volume",
-      "fullscreen",
-    ],
-  };
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (ref.current?.plyr) {
-      // No-op
+    const video = videoRef.current;
+    if (!video) return;
+
+    setError(false);
+
+    if (Hls.isSupported() && src.endsWith(".m3u8")) {
+      const hls = new Hls();
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.ERROR, () => setError(true));
+      return () => hls.destroy();
+    } else {
+      video.src = src;
+      video.onerror = () => setError(true);
     }
-  }, []);
+  }, [src]);
+
+  if (error) {
+    return (
+      <div className="w-full h-[100vh] flex items-center justify-center bg-black text-white">
+        Errore: il video non è disponibile.
+      </div>
+    );
+  }
 
   return (
-    <Plyr
-      ref={ref}
-      source={source}
-      options={options}
-      style={{
-        width: "100%"
-      }}
+    <video
+      ref={videoRef}
+      controls
+      autoPlay={autoplay}
+      className="w-full h-[100vh]"
     />
   );
 }
