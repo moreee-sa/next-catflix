@@ -24,7 +24,6 @@ const BackdropOverlay = styled.div`
 const MovieDetailsPanel = styled.div`
   background-color: rgba(22, 0, 35, 1);
   width: 40%;
-  /* min-height: 60vh;  */
   padding: 10px 20px;
 
   @media only screen and (max-width: ${TABLETBREAKPOINT}) {

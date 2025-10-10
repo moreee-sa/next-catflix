@@ -53,6 +53,7 @@ const ArrowButton = styled.div`
   justify-content: center;
   transition: all 0.3s ease-in;
   pointer-events: auto;
+  border-radius: 20px;
   
   &:hover {
     background: rgba(0,0,0,0.2);
