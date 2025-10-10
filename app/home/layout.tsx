@@ -9,7 +9,7 @@ export default function HomeLayout({
 }) {
   return (
     <Suspense fallback={<Loading />}>
-      <Navbar />
+      <Navbar showVersion={false} />
       {children}
     </Suspense>
   )

@@ -25,7 +25,6 @@ const AppNameWrapper = styled.div`
   box-sizing: border-box;
 `;
 
-
 const AppName = styled.span`
   color: white;
   font-family: 'Prompt', sans-serif;
@@ -76,16 +75,22 @@ const ButtonAccount = styled.button`
   }
 `;
 
-export default function Navbar() {
+type NavbarProps = {
+  showVersion?: boolean;
+}
+
+export default function Navbar({ showVersion=true }: NavbarProps) {
   return (
     <NavigationBar>
       <AppNameWrapper>
         <AppName>
           <Link href="/home">
             {TITLE}
-            <VersionNumber>
-              v{VERSIONE}
-            </VersionNumber>
+            { showVersion &&
+              <VersionNumber>
+                v{VERSIONE}
+              </VersionNumber>
+             }
           </Link>
         </AppName>
       </AppNameWrapper>

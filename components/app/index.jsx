@@ -6,7 +6,6 @@ import '@fontsource-variable/montserrat';
 import Link from "next/link";
 import { MdPlayArrow } from "react-icons/md";
 import { MOBILEBREAKPOINT, TITLE } from "@/lib/constants";
-import BlurText from "../BlurText";
 import { TypeAnimation } from "react-type-animation";
 import AnimatedContent from "../AnimatedContent";
 
@@ -42,8 +41,6 @@ const HeadlineText = styled.span`
   font-family: 'Montserrat Variable', sans-serif;
   font-weight: 500;
   font-size: 100px;
-  /* opacity: 0; */
-  /* animation: ${fadeIn} 1.5s ease-out forwards; */
 
   @media (max-width: ${MOBILEBREAKPOINT}) {
     font-size: 60px;
@@ -54,8 +51,6 @@ const SubtitleSection = styled.div`
   margin-top: 20px;
   min-width: 40%;
   height: 20px;
-  /* opacity: 0; */
-  /* animation: ${fadeIn} 1s ease-out 300ms forwards; */
   display: flex;
   justify-content: center;
 

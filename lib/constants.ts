@@ -1,6 +1,6 @@
 // Informazioni del sito
 export const TITLE: string = "NextCatflix";
-export const VERSIONE: string = "0.1";
+export const VERSIONE: string = "0.2";
 
 // Impostazioni API
 export const LOADINGCARD: number = 50;
