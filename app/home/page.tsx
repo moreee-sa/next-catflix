@@ -54,7 +54,6 @@ export default async function HomePage() {
           const imageUrl = `${APIURL}/poster/${movie.poster_path}`;
           try {
             const blurDataURL = await getBlurData(imageUrl);
-            console.log(blurDataURL)
             return { ...movie, blurDataURL };
           } catch (e) {
             return { ...movie }; // fallback se fallisce
