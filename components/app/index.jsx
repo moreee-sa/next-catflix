@@ -6,6 +6,9 @@ import '@fontsource-variable/montserrat';
 import Link from "next/link";
 import { MdPlayArrow } from "react-icons/md";
 import { MOBILEBREAKPOINT, TITLE } from "@/lib/constants";
+import BlurText from "../BlurText";
+import { TypeAnimation } from "react-type-animation";
+import AnimatedContent from "../AnimatedContent";
 
 const fadeIn = keyframes`
   0% {
@@ -39,8 +42,8 @@ const HeadlineText = styled.span`
   font-family: 'Montserrat Variable', sans-serif;
   font-weight: 500;
   font-size: 100px;
-  opacity: 0;
-  animation: ${fadeIn} 1.5s ease-out forwards;
+  /* opacity: 0; */
+  /* animation: ${fadeIn} 1.5s ease-out forwards; */
 
   @media (max-width: ${MOBILEBREAKPOINT}) {
     font-size: 60px;
@@ -51,12 +54,13 @@ const SubtitleSection = styled.div`
   margin-top: 20px;
   min-width: 40%;
   height: 20px;
-  opacity: 0;
-  animation: ${fadeIn} 1s ease-out 300ms forwards;
-  text-align: center;
+  /* opacity: 0; */
+  /* animation: ${fadeIn} 1s ease-out 300ms forwards; */
+  display: flex;
+  justify-content: center;
 
   @media (max-width: ${MOBILEBREAKPOINT}) {
-    text-align: left;
+    justify-content: flex-start;
   }
 `;
 
@@ -73,8 +77,6 @@ const SubtitleText = styled.span`
 
 const WatchNowSection = styled.div`
   margin-top: 65px;
-  opacity: 0;
-  animation: ${fadeIn} 1s ease-out 600ms forwards;
 `;
 
 const ButtonWatchNow = styled.div`
@@ -107,16 +109,40 @@ export default function HeroSection() {
       </HeadlineText>
       <SubtitleSection>
         <SubtitleText>
-          Il tuo posto per film e intrattenimento.
+          <TypeAnimation
+            sequence={[
+              'Il tuo posto per film',
+              1500,
+              'Il tuo posto per serie',
+              1500,
+              'Il tuo posto per contenuti esclusivi',
+              1500,
+              'Il tuo posto per classici',
+              1500,
+              'Il tuo posto per nuove uscite',
+              1500
+            ]}
+            cursor={false}
+            repeat={Infinity}
+            preRenderFirstString={true}
+          />
         </SubtitleText>
       </SubtitleSection>
       <WatchNowSection>
-        <Link href={"/home"} style={{ textDecoration: "none" }}>
-          <ButtonWatchNow>
-            <MdPlayArrow size={20} />
-            Scopri i film
-          </ButtonWatchNow>
-        </Link>
+        <AnimatedContent
+          distance={40}
+          direction="vertical"
+          animateOpacity
+          ease="power3.out"
+          delay={0.3}
+        >
+          <Link href={"/home"} style={{ textDecoration: "none" }}>
+            <ButtonWatchNow>
+              <MdPlayArrow size={20} />
+              Scopri i film
+            </ButtonWatchNow>
+          </Link>
+        </AnimatedContent>
       </WatchNowSection>
     </MainContent>
   )
