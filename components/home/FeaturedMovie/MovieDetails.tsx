@@ -37,7 +37,7 @@ type MovieDetailsProps = {
 
 export default function MovieDetails({ title, overview, maxSlice }: MovieDetailsProps) {
   return (
-    <div className="w-full h-[400px] flex py-0 px-5 flex-col justify-center max-lg:justify-end">
+    <div className="w-full h-[400px] flex py-0 px-5 flex-col justify-end">
       <Titolo>{title.toLocaleUpperCase()}</Titolo>
       <div className="max-w-[50vh]">
         <Descrizione>

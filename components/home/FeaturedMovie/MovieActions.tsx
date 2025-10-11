@@ -55,7 +55,7 @@ type MovieActionsProps = {
 
 export default function MovieActions({ id_tmdb }: MovieActionsProps) {
   return (
-    <div className="w-full h-[200px] flex items-center gap-5 py-0 px-5 max-md:h-[150px] max-md:justify-center">
+    <div className="w-full h-[200px] flex items-center gap-5 py-0 px-5 max-md:h-[120px] max-md:justify-center">
       <Link href={`/watch/${id_tmdb}`}>
         <PulsanteGuarda><FaPlay size={15} />Guarda ora</PulsanteGuarda>
       </Link>
