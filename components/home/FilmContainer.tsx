@@ -4,6 +4,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
 import { MOBILEBREAKPOINT, APIURL } from "@/lib/constants";
+import { MovieType } from "@/lib/constants";
 
 const Grid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -15,19 +16,15 @@ const Grid = styled.div`
   }
 `;
 
-type Film = {
-  _id: string;
-  id_tmdb: number;
-  title: string;
-  overview: string;
-  poster_path: string;
-  blurDataURL?: string;
-};
-
 const CardContainer = styled.div`
   width: 100%;
   aspect-ratio: 2 / 3;
 `;
+
+type Film = Pick<
+  MovieType,
+  "_id" | "id_tmdb" | "title" | "overview" | "poster_path"
+> & { blurDataURL?: string; }
 
 interface FilmContainerProps {
   movies: Film[];

@@ -18,3 +18,15 @@ export const DESKTOP_PADDING: string = "0 50px";
 
 // Dettagli film
 export const MAXDETAILS: number = 200;
+
+export type MovieType = {
+  _id: string;
+  id_tmdb: number;
+  title: string;
+  overview: string;
+  poster_path: string;
+  backdrop_path: string;
+  release_date: string;
+  vote_average: number;
+  runtime: number;
+};

@@ -6,6 +6,7 @@ import { MdArrowForwardIos, MdArrowBackIosNew  } from "react-icons/md";
 import { APIURL, MOBILEBREAKPOINT } from "@/lib/constants";
 import Link from "next/link";
 import Image from "next/image";
+import { MovieType } from "@/lib/constants";
 
 const ContainerSliderMovie = styled.div`
   position: relative;
@@ -42,10 +43,31 @@ const Card = styled.div`
   position: relative;
 `;
 
+const ArrowContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.3s ease-in;
+  z-index: 30;
+  
+  &:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: ${MOBILEBREAKPOINT}) {
+    display: none;
+  } 
+`;
+
 const ArrowButton = styled.div`
   display: flex;
   width: 40px;
-  height: 100%;
+  height: 60%;
   cursor: pointer;
   z-index: 20;
   display: flex;
@@ -53,37 +75,19 @@ const ArrowButton = styled.div`
   justify-content: center;
   transition: all 0.3s ease-in;
   pointer-events: auto;
-  border-radius: 20px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.2);
   
   &:hover {
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.4);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
   }
 `;
 
-const ArrowContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  pointer-events: none;
-
-  @media (max-width: ${MOBILEBREAKPOINT}) {
-    display: none;
-  } 
-`;
-
-type Film = {
-  _id: string;
-  id_tmdb: number;
-  title: string;
-  overview: string;
-  poster_path: string;
-  blurDataURL?: string;
-};
+type Film = Pick<
+  MovieType,
+  "_id" | "id_tmdb" | "title" | "overview" | "poster_path"
+> & { blurDataURL?: string; }
 
 interface SliderProps {
   titolo: string;

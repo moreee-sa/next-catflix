@@ -3,27 +3,16 @@ import { getBlurData } from "@/lib/getBlurData";
 import { APIURL } from "@/lib/constants";
 import FeaturedMovie from "@/components/home/FeaturedMovie";
 import SliderMovie from "@/components/home/SliderMovie";
+import { MovieType } from "@/lib/constants";
 
-type Film = {
-  _id: string;
-  id_tmdb: number;
-  title: string;
-  overview: string;
-  poster_path: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
-  runtime: number;
-};
-
-const featured: number = 1294203;
+const featured: number = 480530;
 
 export default async function HomePage() {
   try {
     // Featured Movie
     const res_featured = await fetch(`${APIURL}/movie/${featured}`);
     if (!res_featured || !res_featured.ok) notFound();
-    const featured_movie: Film = await res_featured.json();
+    const featured_movie: MovieType = await res_featured.json();
 
     try {
       // Featured Movie BlurData

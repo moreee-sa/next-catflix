@@ -3,17 +3,7 @@ import { notFound } from "next/navigation";
 import MoviePage from "@/components/movie";
 import { getBlurData } from "@/lib/getBlurData";
 import { APIURL } from "@/lib/constants";
-
-type Film = {
-  _id: string;
-  id_tmdb: number;
-  title: string;
-  overview: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
-  runtime: number;
-};
+import { MovieType } from "@/lib/constants";
 
 export async function generateMetadata({
   params,
@@ -37,7 +27,7 @@ export async function generateMetadata({
       };
     }
 
-    const movie: Film = await res.json();
+    const movie: MovieType = await res.json();
 
     return {
       title: `${movie.title} | Catflix`,
@@ -62,7 +52,7 @@ export default async function MovieSlug({
     const res = await fetch(`${APIURL}/movie/${id_tmdb}`);
     if (!res || !res.ok) notFound();
 
-    const movie: Film = await res.json();
+    const movie: MovieType = await res.json();
 
     try {
       const imageUrl = `${APIURL}/backdrop/${movie.backdrop_path}`;

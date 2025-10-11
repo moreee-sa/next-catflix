@@ -2,18 +2,7 @@ import { notFound } from "next/navigation";
 import SliderMovieContent from "./SliderMovieContent"
 import { APIURL } from "@/lib/constants";
 import { getBlurData } from "@/lib/getBlurData";
-
-type Film = {
-  _id: string;
-  id_tmdb: number;
-  title: string;
-  overview: string;
-  poster_path: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
-  runtime: number;
-};
+import { MovieType } from "@/lib/constants";
 
 type SliderMovieProps = {
   pagina: number;
@@ -28,7 +17,7 @@ export default async function SliderMovie({ pagina, titoloCategoria, categoria }
     const res = await fetch(`${APIURL}/movies?pagina=${pagina}`);
     if (!res || !res.ok) notFound();
     const data = await res.json();
-    const movie: Film[] = data.Film.Film;
+    const movie: MovieType[] = data.Film.Film;
 
     // Movies BlurData
     const MoviesWithBlur = await Promise.all(
