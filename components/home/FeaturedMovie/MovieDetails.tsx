@@ -10,23 +10,13 @@ const Titolo = styled.span`
   color: white;
   font-family: 'Prompt', sans-serif;
   font-weight: 500;
-  font-size: 35px;
-
-  @media only screen and (max-width: ${MOBILEBREAKPOINT}) {
-    font-size: 20px;
-  }
 `;
 
 const Descrizione = styled.span`
   color: #dadada;
   font-weight: 400;
   font-family: 'Montserrat Variable', sans-serif;
-  font-size: 18px;
   margin-top: 15px;
-
-  @media only screen and (max-width: ${MOBILEBREAKPOINT}) {
-    font-size: 15px;
-  }
 `;
 
 type MovieDetailsProps = {
@@ -37,10 +27,10 @@ type MovieDetailsProps = {
 
 export default function MovieDetails({ title, overview, maxSlice }: MovieDetailsProps) {
   return (
-    <div className="w-full h-[400px] flex py-0 px-5 flex-col justify-end">
-      <Titolo>{title.toLocaleUpperCase()}</Titolo>
+    <div className="w-full h-[500px] max-lg:h-[250px] max-md:h-[300px] flex py-0 px-5 flex-col justify-end">
+      <Titolo className="text-6xl max-lg:text-3xl">{title.toLocaleUpperCase()}</Titolo>
       <div className="max-w-[50vh]">
-        <Descrizione>
+        <Descrizione className="text-xl max-lg:text-lg max-md:text-base">
           {overview.length > 50 
             ? overview.slice(0, maxSlice) + "..." 
             : overview}
