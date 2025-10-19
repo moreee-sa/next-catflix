@@ -148,7 +148,7 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
     timerRef.current = setTimeout(() => {
       setShowOverlay(false);
       setHideCursor(true);
-    }, 1500);
+    }, 2000);
   };
 
   useEffect(() => {
