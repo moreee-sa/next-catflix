@@ -61,11 +61,17 @@ const SeekBarContainer = styled.div`
   cursor: pointer;
 `;
 
-const SeekBarProgress = styled.div.attrs<{ $progress?: number }>(props => ({
-  style: {
-    width: `${props.$progress ?? 0}%`,
-  },
-}))`
+interface SeekBarProgressProps {
+  $progress?: number;
+}
+
+export const SeekBarProgress = styled.div.attrs<SeekBarProgressProps>(
+  (props) => ({
+    style: {
+      width: `${props.$progress ?? 0}%`,
+    },
+  })
+)`
   position: absolute;
   top: 0;
   left: 0;
