@@ -193,16 +193,17 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
             <SeekBarProgress $progress={progress} />
           </SeekBarContainer>
 
-          {/* Full Screen Button */}
-          <FullScreenButton onClick={handleFullScreen} >
-            {isFullScreen ? <MdFullscreenExit /> : <MdFullscreen />}
-          </FullScreenButton>
-
           {/* Time Display */}
           <TimeDisplay>
             {/* {formatTime(currentTime)} / {formatTime(duration)} */}
             {formatTime(currentTime)}
           </TimeDisplay>
+          
+          {/* Full Screen Button */}
+          <FullScreenButton onClick={handleFullScreen} >
+            {isFullScreen ? <MdFullscreenExit /> : <MdFullscreen />}
+          </FullScreenButton>
+
         </div>
       </div>
 
