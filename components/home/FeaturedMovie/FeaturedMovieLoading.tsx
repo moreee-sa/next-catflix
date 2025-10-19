@@ -1,62 +1,24 @@
 'use client'
 
-import styled from "styled-components";
-import { MOBILEBREAKPOINT, TABLETBREAKPOINT} from "@/lib/constants";
-
-const ContainerFeaturedMovie = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-`;
-
-const ContainerDettagli = styled.div`
-  width: 100%;
-  height: 400px;
-  display: flex;
-  padding: 0 20px;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 50vh;
-
-  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
-    justify-content: flex-end;
-  }
-`;
-
-const ContainerSpazio = styled.div`
-  width: 100%;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 0 20px;
-
-  @media only screen and (max-width: ${MOBILEBREAKPOINT}) {
-    height: 150px;
-    justify-content: center;
-  }
-`;
-
 export default function FeaturedMovieLoading() {
   return (
-    <div className="p-5 opacity-40">
-      <ContainerFeaturedMovie className="bg-gray-700 rounded-2xl animate-pulse">
-        <div style={{ zIndex: "20" }}>
-          <ContainerDettagli>
-            {/* Titolo */}
-            <div className="bg-gray-400 animate-pulse rounded-2xl h-[48px] w-[340px] max-md:w-11/12" />
-
-            {/* Dettagli */}
-            <div style={{ marginTop: "15px" }} className="flex flex-col gap-2 mt-2">
-              <div className="bg-gray-400 animate-pulse w-9/12 h-4 rounded-lg" />
-              <div className="bg-gray-400 animate-pulse w-7/12 h-4 rounded-lg" />
-              <div className="bg-gray-400 animate-pulse w-5/12 h-4 rounded-lg" />
-            </div>
-          </ContainerDettagli>
-          <ContainerSpazio />
+    <div className="px-5 opacity-40">
+      <div className="bg-gray-700 animate-pulse rounded-2xl flex flex-col justify-between relative">
+        {/* Details */}
+        <div className="rounded-2xl animate-pulse w-full h-[500px] max-lg:h-[250px] max-md:h-[300px] flex py-0 px-5 flex-col justify-end">
+          {/* Title */}
+          <div className="bg-gray-400 rounded-2xl h-[60px] w-[250px] max-lg:h-[36px] max-lg:w-[180px] animate-pulse" />
+          {/* Description */}
+          <div className="bg-gray-400 mt-[15px] h-[21px] max-w-[50vh] rounded-2xl animate-pulse" />
+          <div className="bg-gray-400 mt-[5px] h-[21px] max-w-[45vh] rounded-2xl animate-pulse" />
         </div>
-      </ContainerFeaturedMovie>
+        {/* Actions */}
+        <div className="w-full h-[200px] flex items-center gap-5 py-0 px-5 max-md:h-[120px] max-md:justify-center">
+          {/* Buttons */}
+          <div className="bg-gray-400 rounded-[8px] animate-pulse w-[164px] h-[56px] max-lg:w-[144px] max-lg:h-[42px]" />
+          <div className="bg-gray-400 rounded-[8px] animate-pulse w-[164px] h-[56px] max-lg:w-[144px] max-lg:h-[42px]" />
+        </div>
+      </div>
     </div>
   )
 }

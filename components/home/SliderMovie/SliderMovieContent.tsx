@@ -37,7 +37,6 @@ const CardContainer = styled.div`
 const Card = styled.div`
   height: 250px;
   aspect-ratio: 9 / 16;
-  background-color: blue;
   border-radius: 1rem;
   flex: 0 0 auto;
   position: relative;

@@ -47,7 +47,7 @@ export default function FeaturedMovie({ movie, imagebackdrop }: FeaturedMoviePro
             borderRadius: "1rem"
           }}
         >
-          <MovieDetails title={movie.title} overview={movie.overview} maxSlice={90} />
+          <MovieDetails title={movie.title} overview={movie.overview} maxSlice={80} />
           <MovieActions id_tmdb={movie.id_tmdb} />
         </div>
       </div>
