@@ -61,14 +61,17 @@ const SeekBarContainer = styled.div`
   cursor: pointer;
 `;
 
-const SeekBarProgress = styled.div<{ $progress: number }>`
+const SeekBarProgress = styled.div.attrs<{ $progress?: number }>(props => ({
+  style: {
+    width: `${props.$progress ?? 0}%`,
+  },
+}))`
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   background-color: #a9e5bb;
   border-radius: 8px;
-  width: ${({ $progress }) => $progress}%;
   transition: width 0.1s linear;
 `;
 
@@ -155,18 +158,40 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
 
   const progress = duration ? (currentTime / duration) * 100 : 0;
 
-  const handleFullScreen = () => {
+  const handleFullScreen = async () => {
     const container = overlayRef.current;
     if (!container) return;
 
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-      (screen.orientation as any)?.unlock?.();
-      setIsFullScreen(false);
-    } else {
-      container.requestFullscreen();
-      (screen.orientation as any)?.lock?.("landscape");
-      setIsFullScreen(true);
+    try {
+      if (document.fullscreenElement) {
+        // Esci da fullscreen e prova a sbloccare l'orientamento (se supportato)
+        if (typeof document.exitFullscreen === "function") {
+          await document.exitFullscreen();
+        }
+        try {
+          if ("orientation" in screen && typeof (screen as any).orientation.unlock === "function") {
+            await (screen as any).orientation.unlock();
+          }
+        } catch {
+          // ignore: unlock non supportato o fallito
+        }
+        setIsFullScreen(false);
+      } else {
+        // Entra in fullscreen e poi prova a lockare l'orientamento (se supportato)
+        if (typeof container.requestFullscreen === "function") {
+          await container.requestFullscreen();
+        }
+        try {
+          if ("orientation" in screen && typeof (screen as any).orientation.lock === "function") {
+            await (screen as any).orientation.lock("landscape");
+          }
+        } catch {
+          // ignore: lock non supportato o rifiutato
+        }
+        setIsFullScreen(true);
+      }
+    } catch (err) {
+      console.warn("Fullscreen/orientation operation failed:", err);
     }
   };
 
