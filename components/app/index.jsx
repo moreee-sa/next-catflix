@@ -43,7 +43,7 @@ const HeadlineText = styled.span`
   font-size: 100px;
 
   @media (max-width: ${MOBILEBREAKPOINT}) {
-    font-size: 60px;
+    font-size: 55px;
   }
 `;
 
