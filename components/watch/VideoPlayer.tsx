@@ -4,6 +4,7 @@ import styled from "styled-components";
 import '@fontsource/prompt/500.css';
 import { FaPlay, FaPause } from "react-icons/fa";
 import { MdFullscreen, MdFullscreenExit } from "react-icons/md";
+import { IoChevronBackOutline } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import Hls from "hls.js";
 
@@ -99,6 +100,9 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [hideCursor, setHideCursor] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -134,6 +138,32 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
     return () => {
       video.removeEventListener("timeupdate", updateTime);
       video.removeEventListener("loadedmetadata", setMeta);
+    };
+  }, []);
+
+  const showControlsTemporarily = () => {
+    setShowOverlay(true);
+    setHideCursor(false);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setShowOverlay(false);
+      setHideCursor(true);
+    }, 1500);
+  };
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleMouseMove = () => showControlsTemporarily();
+    const handleClick = () => showControlsTemporarily();
+
+    video.addEventListener("mousemove", handleMouseMove);
+    video.addEventListener("click", handleClick);
+
+    return () => {
+      video.removeEventListener("mousemove", handleMouseMove);
+      video.removeEventListener("click", handleClick);
     };
   }, []);
 
@@ -210,10 +240,22 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
   }
 
   return (
-    <div ref={overlayRef} className="relative w-full h-full flex items-center justify-center">
+    <div
+      ref={overlayRef}
+      className={`relative w-full h-full flex items-center justify-center bg-black transition-[cursor] duration-300 ${hideCursor ? "cursor-none" : "cursor-default"}`}
+    >
       {/* Overlay controlli */}
-      <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/40 to-transparent"> 
-        <div className="flex items-center justify-center gap-4 p-2 flex-nowrap z-50">
+      <div className={`absolute inset-0 flex flex-col justify-stretch bg-gradient-to-t from-black/40 to-transparent transition-opacity duration-300 ${showOverlay ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
+        {/* Back button */}
+        <div className="p-2">
+          <IoChevronBackOutline size={50} color="white" />
+        </div>
+
+        {/* Play */}
+        <div className="opacity-40 h-full"></div>
+
+        {/* Play - Seek Bar - Time Display */}
+        <div className="flex items-center justify-center gap-4 p-2 flex-nowrap z-50 pointer-events-auto">
           {/* Play Button */}
           <PlayButton onClick={togglePlay} >
             {isPlaying ? <FaPause /> : <FaPlay />}
@@ -242,7 +284,7 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
       <video
         ref={videoRef}
         className="object-contain w-full h-[100vh]"
-        onClick={togglePlay}
+        // onClick={togglePlay}
         onDoubleClick={handleFullScreen}
       />
     </div>
