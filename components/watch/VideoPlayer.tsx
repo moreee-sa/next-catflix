@@ -161,11 +161,11 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
 
     if (document.fullscreenElement) {
       document.exitFullscreen();
+      (screen.orientation as any)?.unlock?.();
       setIsFullScreen(false);
     } else {
-      container.requestFullscreen().catch((err) => {
-        console.error("Errore nell'attivazione fullscreen:", err);
-      });
+      container.requestFullscreen();
+      (screen.orientation as any)?.lock?.("landscape");
       setIsFullScreen(true);
     }
   };
@@ -179,7 +179,7 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
   }
 
   return (
-    <div ref={overlayRef} className="relative w-full h-[100vh] flex items-center justify-center">
+    <div ref={overlayRef} className="relative w-full h-full flex items-center justify-center">
       {/* Overlay controlli */}
       <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/40 to-transparent"> 
         <div className="flex items-center justify-center gap-4 p-2 flex-nowrap z-50">
@@ -209,7 +209,9 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
       {/* Video */}
       <video
         ref={videoRef}
-        className="object-contain w-full h-full"
+        className="object-contain w-full h-[100vh]"
+        onClick={togglePlay}
+        onDoubleClick={handleFullScreen}
       />
     </div>
   );
