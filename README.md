@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextCatflix
+**NextCatflix** è un progetto personale creato per migliorare le mie competenze nel framework **Next.js** e nella gestione di progetti complessi.
 
-## Getting Started
+L’obiettivo del progetto è **ricreare un sito di streaming di film**, utilizzando:
+- **Next.js** come framework frontend
+- **Tailwind CSS** per lo stile e il design reattivo
+- **API in Python** per la gestione dei dati
+- 
+Il progetto mira a realizzare un **design moderno e responsive**, ottimizzato per diversi dispositivi: desktop, tablet e mobile.
 
-First, run the development server:
-
+## Produzione (build locale)
+Per eseguire il progetto localmente, segui questi passaggi:
+1. Clona il repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <REPOSITORY_URL>
+```
+2. Entra nella cartella del progetto:
+```bash
+cd next-catflix
+```
+3. Installa le dipendenze:
+```bash
+npm install
+```
+4. Compila il progetto:
+```bash
+npm run build
+```
+5. Avvia il server di produzione:
+```bash
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> [!WARNING]
+> ⚠️ Assicurati di avere il file `.env.local` con le variabili necessarie prima di eseguire la build.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configurazione variabili d'ambiente
+NextCatflix utilizza variabili d’ambiente per configurare host, porte e API.  
+I file vanno creati **nella root del progetto**:
+- `next-catflix/.env.local` → per sviluppo locale
+- `next-catflix/.env.production` → per build/produzione
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Per sviluppo
+`next-catflix/.env.local`
+```text
+# New Config
+NEXT_PUBLIC_API_URL=http://<ip_address>:<port>
+NEXT_PUBLIC_IMAGE_HOST=<ip_address>
+NEXT_PUBLIC_IMAGE_PORT=<port>
 
-## Learn More
+# Dev
+NEXT_PUBLIC_DEV_ORIGIN=http://<ip_address>:3000
+NEXT_PUBLIC_LOCALHOST=http://localhost:3000
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Per build/produzione
+`next-catflix/.env.production`
+```text
+NEXT_PUBLIC_API_URL=http://<ip_address>:<port>
+NEXT_PUBLIC_IMAGE_HOST=<ip_address>
+NEXT_PUBLIC_IMAGE_PORT=<port>
+```
