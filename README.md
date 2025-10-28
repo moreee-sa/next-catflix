@@ -32,7 +32,7 @@ npm run start
 ```
 
 > [!WARNING]
-> ⚠️ Assicurati di avere il file `.env.local` con le variabili necessarie prima di eseguire la build.
+> Assicurati di avere il file `.env.local` con le variabili necessarie prima di eseguire la build.
 
 ## Configurazione variabili d'ambiente
 NextCatflix utilizza variabili d’ambiente per configurare host, porte e API.  
