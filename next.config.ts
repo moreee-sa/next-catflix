@@ -5,6 +5,10 @@ const nextConfig: NextConfig & { allowedDevOrigins?: string[] } = {
     styledComponents: true,
   },
   images: {
+    // Permette immagini da IP privati.
+    // dangerouslyAllowLocalIP: process.env.NODE_ENV === "development",
+    // ⚠️ Usare solo in sviluppo o reti interne, mai in produzione pubblica
+    dangerouslyAllowLocalIP: true,
     remotePatterns: [
       {
         protocol: "http",
