@@ -247,9 +247,9 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
       {/* Overlay controlli */}
       <div className={`absolute inset-0 flex flex-col justify-stretch bg-gradient-to-t from-black/40 to-transparent transition-opacity duration-300 ${showOverlay ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
         {/* Back button */}
-        <div className="p-2">
+        {/* <div className="p-2">
           <IoChevronBackOutline size={50} color="white" />
-        </div>
+        </div> */}
 
         {/* Play */}
         <div className="opacity-40 h-full"></div>
