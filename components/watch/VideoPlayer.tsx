@@ -118,7 +118,24 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
       return () => hls.destroy();
     } else {
       video.src = src;
+
+      // Autoplay
+      video.oncanplay = () => {
+        video.play()
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch(() => {
+            console.log("Autoplay bloccato dal browser");
+            setIsPlaying(false);
+          });
+      };
+
       video.onerror = () => setError(true);
+
+      return () => {
+        video.oncanplay = null;
+      };
     }
   }, [src]);
 
