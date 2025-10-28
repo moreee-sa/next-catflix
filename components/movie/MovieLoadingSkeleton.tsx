@@ -1,16 +1,9 @@
 'use client'
 
 import styled from "styled-components";
-import { APIURL, TABLETBREAKPOINT } from "@/lib/constants";
-
-const PageWrapper = styled.div`
-  width: 100%;
-  padding: 20px;
-
-  @media only screen and (max-width: ${TABLETBREAKPOINT}) {
-    padding: 0;
-  }
-`;
+import { TABLETBREAKPOINT } from "@/lib/constants";
+import { image } from "motion/react-client";
+import SliderMovieLoading from "../home/SliderMovie/SliderMovieLoading";
 
 const MovieLayout = styled.div`
   display: flex;
@@ -66,31 +59,35 @@ const PulsanteGuarda = styled.div`
 
 export default function MovieLoadingSkeleton() {
   return (
-    <PageWrapper>
-      <MovieLayout>
-        <BackdropContainer className="bg-gray-700 animate-pulse" />
+    <>
+      <div className="w-full p-5 max-lg:p-0">
+        <MovieLayout>
+          <BackdropContainer className="bg-gray-700 animate-pulse" />
 
-        {/* Details Panel */}
-        <MovieDetailsPanel>
-          {/* Titolo */}
-          <MovieTitle className="bg-gray-400 animate-pulse w-[280px] rounded-2xl" />
+          {/* Details Panel */}
+          <MovieDetailsPanel>
+            {/* Titolo */}
+            <MovieTitle className="bg-gray-400 animate-pulse w-[280px] rounded-2xl" />
 
-          {/* Dettagli */}
-          <div style={{ margin: "15px 0" }}>
-            <div className="bg-gray-500 animate-pulse w-[150px] h-[20px] rounded-lg" />
-          </div>
+            {/* Dettagli */}
+            <div style={{ margin: "15px 0" }}>
+              <div className="bg-gray-500 animate-pulse w-[150px] h-[20px] rounded-lg" />
+            </div>
 
-          {/* Pulsante */}
-          <PulsanteGuarda className="bg-gray-400 animate-pulse w-[144px] h-[42px] rounded-lg" />
+            {/* Pulsante */}
+            <PulsanteGuarda className="bg-gray-400 animate-pulse w-[144px] h-[42px] rounded-lg" />
 
-          {/* Overview */}
-          <div style={{ marginTop: "15px" }} className="flex flex-col gap-2 mt-2">
-            <div className="bg-gray-400 animate-pulse w-full h-4 rounded-lg" />
-            <div className="bg-gray-400 animate-pulse w-11/12 h-4 rounded-lg" />
-            <div className="bg-gray-400 animate-pulse w-10/12 h-4 rounded-lg" />
-          </div>
-        </MovieDetailsPanel>
-      </MovieLayout>
-    </PageWrapper>
+            {/* Overview */}
+            <div style={{ marginTop: "15px" }} className="flex flex-col gap-2 mt-2">
+              <div className="bg-gray-400 animate-pulse w-full h-4 rounded-lg" />
+              <div className="bg-gray-400 animate-pulse w-11/12 h-4 rounded-lg" />
+              <div className="bg-gray-400 animate-pulse w-10/12 h-4 rounded-lg" />
+            </div>
+          </MovieDetailsPanel>
+        </MovieLayout>
+        <div className="w-64 h-0.5 mx-auto my-4 bg-gray-100 border-0 rounded-sm md:my-10 dark:bg-gray-700" />
+      </div>
+      <SliderMovieLoading />
+    </>
   )
 }
