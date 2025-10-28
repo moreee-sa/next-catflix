@@ -12,15 +12,15 @@ const nextConfig: NextConfig & { allowedDevOrigins?: string[] } = {
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "192.168.1.221",
-        port: "8000",
+        hostname: process.env.NEXT_PUBLIC_IMAGE_HOST!,
+        port: process.env.NEXT_PUBLIC_IMAGE_PORT!,
         pathname: "/**",
       },
     ],
   },
   allowedDevOrigins: [
-    "http://192.168.1.221:3000",
-    "http://localhost:3000",
+    process.env.NEXT_PUBLIC_DEV_ORIGIN!,
+    process.env.NEXT_PUBLIC_LOCALHOST!,
   ],
 };
 
