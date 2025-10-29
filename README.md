@@ -5,7 +5,7 @@ L’obiettivo del progetto è **ricreare un sito di streaming di film**, utilizz
 - **Next.js** come framework frontend
 - **Tailwind CSS** per lo stile e il design reattivo
 - **API in Python** per la gestione dei dati
-- 
+  
 Il progetto mira a realizzare un **design moderno e responsive**, ottimizzato per diversi dispositivi: desktop, tablet e mobile.
 
 ## Produzione (build locale)
