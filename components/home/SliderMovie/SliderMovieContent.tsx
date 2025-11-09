@@ -1,7 +1,7 @@
 'use client'
 
 import styled from "styled-components";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { MdArrowForwardIos, MdArrowBackIosNew  } from "react-icons/md";
 import { APIURL, MOBILEBREAKPOINT } from "@/lib/constants";
 import Link from "next/link";
@@ -95,6 +95,7 @@ interface SliderProps {
 
 export default function SliderMovieContent({ titolo, movies }: SliderProps) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [arrowVisible, setArrowVisible] = useState(false);
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
@@ -103,6 +104,8 @@ export default function SliderMovieContent({ titolo, movies }: SliderProps) {
       left: direction === "left" ? -amount : amount, 
       behavior: "smooth" 
     });
+
+    if (direction === "right" && arrowVisible === false) setArrowVisible(true);
   };
 
   return (
@@ -110,7 +113,7 @@ export default function SliderMovieContent({ titolo, movies }: SliderProps) {
       <TitoloSlider className="p-5">{titolo}</TitoloSlider>
       <div className="relative">
         <ArrowContainer>
-          <ArrowButton onClick={() => scroll("left")}>
+          <ArrowButton style={{ visibility: arrowVisible ? "visible" : "hidden" }} onClick={() => scroll("left")}>
             <MdArrowBackIosNew color="#fefae0" size={40} />
           </ArrowButton>
           <ArrowButton onClick={() => scroll("right")}>
