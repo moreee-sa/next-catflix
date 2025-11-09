@@ -53,7 +53,7 @@ const Social = styled.div`
   box-sizing: border-box;
 `;
 
-const ButtonAccount = styled.button`
+const LoginButton = styled.button`
   border-radius: 16px;
   height: 42px;
   background-color: #E2E2B6;
@@ -96,9 +96,9 @@ export default function Navbar({ showVersion=true }: NavbarProps) {
       </AppNameWrapper>
       <Social>
         <Link href="/home">
-          <ButtonAccount>
-            Account
-          </ButtonAccount>
+          <LoginButton>
+            Accedi
+          </LoginButton>
         </Link>
       </Social>
     </NavigationBar>
