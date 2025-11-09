@@ -2,8 +2,6 @@
 
 import styled from 'styled-components';
 import Link from 'next/link' ;
-import '@fontsource/prompt/500.css';
-import '@fontsource-variable/montserrat';
 import { MOBILEBREAKPOINT } from "@/lib/constants";
 
 const ErrorTitle = styled.span`

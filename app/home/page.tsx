@@ -4,8 +4,11 @@ import { APIURL } from "@/lib/constants";
 import FeaturedMovie from "@/components/home/FeaturedMovie";
 import SliderMovie from "@/components/home/SliderMovie";
 import { MovieType } from "@/lib/constants";
+// import InfoBanner from "@/components/home/InfoBanner";
+import '@fontsource/prompt/500.css';
+import '@fontsource-variable/montserrat';
 
-const featured: number = 480530;
+const featured: number = 1294203;
 
 export default async function HomePage() {
   try {
@@ -27,6 +30,7 @@ export default async function HomePage() {
             <SliderMovie pagina={2} titoloCategoria="Altri titoli" />
             <SliderMovie pagina={3} titoloCategoria="Altri Film" />
           </div>
+          {/* <InfoBanner /> */}
         </>
       )
     } catch {

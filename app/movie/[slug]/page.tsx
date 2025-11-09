@@ -4,6 +4,8 @@ import MoviePage from "@/components/movie";
 import { getBlurData } from "@/lib/getBlurData";
 import { APIURL } from "@/lib/constants";
 import { MovieType } from "@/lib/constants";
+import '@fontsource/prompt/500.css';
+import '@fontsource-variable/montserrat';
 
 export async function generateMetadata({
   params,

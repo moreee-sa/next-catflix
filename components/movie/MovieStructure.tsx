@@ -4,8 +4,6 @@ import styled from "styled-components"
 import Image from "next/image";
 import MovieDetails from "./MovieDetails";
 import { APIURL, TABLETBREAKPOINT } from "@/lib/constants";
-import '@fontsource-variable/montserrat';
-import '@fontsource/prompt/500.css';
 
 const BackdropOverlay = styled.div`
   position: absolute;

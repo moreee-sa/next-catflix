@@ -1,8 +1,6 @@
 'use client'
 
 import styled, { keyframes } from "styled-components";
-import '@fontsource/prompt/500.css';
-import '@fontsource-variable/montserrat';
 import Link from "next/link";
 import { MdPlayArrow } from "react-icons/md";
 import { MOBILEBREAKPOINT, TITLE } from "@/lib/constants";

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import styled from "styled-components";
-import '@fontsource/prompt/500.css';
 import { MOBILEBREAKPOINT, TABLETBREAKPOINT, TITLE, VERSIONE } from "@/lib/constants";
 
 const NavigationBar = styled.div`

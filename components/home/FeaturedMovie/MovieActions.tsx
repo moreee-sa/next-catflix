@@ -5,7 +5,6 @@ import Link from "next/link"
 import { FaPlay } from "react-icons/fa"
 import { IoMdInformationCircleOutline } from "react-icons/io"
 import { TABLETBREAKPOINT } from "@/lib/constants"
-import '@fontsource/prompt/500.css';
 
 const Pulsante = styled.div`
   border-radius: 8px;

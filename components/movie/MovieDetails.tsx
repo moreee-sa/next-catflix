@@ -3,8 +3,6 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { FaPlay } from "react-icons/fa";
-import '@fontsource/prompt/500.css';
-import '@fontsource-variable/montserrat';
 import { TABLETBREAKPOINT, MAXDETAILS} from "@/lib/constants";
 import { useState, useEffect } from "react";
 

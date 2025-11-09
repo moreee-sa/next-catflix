@@ -2,9 +2,6 @@
 
 import styled from "styled-components";
 import { MOBILEBREAKPOINT } from "@/lib/constants";
-import '@fontsource/prompt/500.css';
-import '@fontsource-variable/montserrat';
-
 
 const Titolo = styled.span`
   color: white;

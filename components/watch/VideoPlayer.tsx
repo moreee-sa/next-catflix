@@ -1,7 +1,6 @@
 "use client"
 
 import styled from "styled-components";
-import '@fontsource/prompt/500.css';
 import { FaPlay, FaPause } from "react-icons/fa";
 import { MdFullscreen, MdFullscreenExit } from "react-icons/md";
 import { IoChevronBackOutline } from "react-icons/io5";
