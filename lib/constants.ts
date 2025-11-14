@@ -22,17 +22,17 @@ export const MAXDETAILS: number = 200;
 export type MovieType = {
   id_tmdb: string;
   title: string;
-  overview: string;
-  adult: boolean;
+  overview?: string;
+  adult?: boolean;
 
   poster_path: string;
-  backdrop_path: string;
+  backdrop_path?: string;
 
-  vote_average: number;
-  popularity: number;
-  runtime: number;
-  release_date: string;
+  vote_average?: number;
+  popularity?: number;
+  runtime?: number;
+  release_date?: string;
 
-  genres: string[];
-  media_path: string;
+  genres?: string[];
+  media_path?: string;
 };
