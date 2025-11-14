@@ -107,8 +107,6 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
     const video = videoRef.current;
     if (!video) return;
 
-    setError(false);
-
     if (Hls.isSupported() && src.endsWith(".m3u8")) {
       const hls = new Hls();
       hls.loadSource(src);
