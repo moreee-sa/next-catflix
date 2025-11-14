@@ -6,6 +6,7 @@ import { MdPlayArrow } from "react-icons/md";
 import { MOBILEBREAKPOINT, TITLE } from "@/lib/constants";
 import { TypeAnimation } from "react-type-animation";
 import AnimatedContent from "../AnimatedContent";
+import '@fontsource-variable/montserrat';
 
 const fadeIn = keyframes`
   0% {
