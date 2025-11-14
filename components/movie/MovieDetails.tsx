@@ -69,23 +69,15 @@ function formatRuntime(minutes: number): string {
 
 export default function MovieDetails({ movie }: MovieDetailsProps) {
   const id_movie: string = movie.id_tmdb;
-  const years: number = new Date(movie.release_date).getFullYear();
-  const vote: string = movie.vote_average.toFixed(1);
-  const runtimeFormatted: string = formatRuntime(movie.runtime);
+  const years: number = movie.release_date ? new Date(movie.release_date).getFullYear() : 0;
+  const vote: string = movie.vote_average != null ? movie.vote_average.toFixed(1) : "N/A";
+  const runtimeFormatted: string = movie.runtime != null ? formatRuntime(movie.runtime) : "N/A";
 
-  const [lunghezza, setLunghezza] = useState(false);
-  const [overviewSnippet, setOverviewSnippet] = useState<string>("");
   const [mostraTutto, setMostraTutto] = useState(false);
 
-  useEffect(() => {
-    if (movie.overview.length > MAXDETAILS) {
-      setOverviewSnippet(movie.overview.slice(0, MAXDETAILS) + "... ");
-      setLunghezza(true);
-    } else {
-      setOverviewSnippet(movie.overview);
-      setLunghezza(false);
-    }
-  }, [movie]);
+  const overview = movie.overview ?? "";
+  const lunghezza = overview.length > MAXDETAILS;
+  const overviewSnippet = lunghezza ? overview.slice(0, MAXDETAILS) + "... " : overview;
 
   const toggleMostraTutto = () => {
     setMostraTutto(prev => !prev);
@@ -100,7 +92,7 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
         <PulsanteGuarda><FaPlay />Guarda ora</PulsanteGuarda>
       </Link>
       <MovieOverview>
-        {mostraTutto ? movie.overview + " " : overviewSnippet}
+        {mostraTutto ? (movie.overview ?? "") + " " : overviewSnippet}
         {lunghezza && (
           <PulsanteLeggiTutto onClick={toggleMostraTutto}>
             {mostraTutto ? "Leggi di meno" : "Leggi tutto"}
