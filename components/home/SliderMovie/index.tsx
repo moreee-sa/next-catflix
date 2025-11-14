@@ -14,16 +14,10 @@ export default async function SliderMovie({ titoloCategoria, endpoint }: SliderM
     // URL dinamico basato sull'endpoint
     const url = `${APIURL}/movie/${endpoint}`;
 
-    console.log(url)
-
     const res = await fetch(url);
     if (!res || !res.ok) notFound();
     const data = await res.json();
-    console.log(data)
-
     const movies: MovieType[] = data.Film;
-
-    console.log(movies)
 
     // Genera blurData
     const MoviesWithBlur = await Promise.all(
