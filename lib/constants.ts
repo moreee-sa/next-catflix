@@ -36,3 +36,10 @@ export type MovieType = {
   genres?: string[];
   media_path?: string;
 };
+
+export type MovieDetailsProps = {
+  id_tmdb: string;
+  title?: string;
+  overview?: string;
+  maxSlice?: number;
+};

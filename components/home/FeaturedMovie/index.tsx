@@ -3,7 +3,7 @@
 import Image from "next/image";
 import MovieDetails from "./MovieDetails";
 import MovieActions from "./MovieActions";
-import { MovieType } from "@/lib/constants";
+import { MovieDetailsProps } from "@/lib/constants";
 
 interface ImageBackdrop {
   imageUrl: string;
@@ -11,17 +11,20 @@ interface ImageBackdrop {
 }
 
 type FeaturedMovieProps = {
-  movie: MovieType;
+  movie: MovieDetailsProps;
   imagebackdrop: ImageBackdrop;
 }
 
 export default function FeaturedMovie({ movie, imagebackdrop }: FeaturedMovieProps) {
+  const displayTitle = movie.title ?? "Titolo non disponibile";
+  const displayOverview = movie.overview ?? "";
+
   return (
     <div className="px-5">
       <div className="rounded-2xl flex flex-col justify-between relative">
         <Image
           src={imagebackdrop.imageUrl}
-          alt={movie.title}
+          alt={displayTitle}
           fill
           sizes="100vw"
           priority
@@ -36,7 +39,7 @@ export default function FeaturedMovie({ movie, imagebackdrop }: FeaturedMoviePro
             borderRadius: "1rem"
           }}
         >
-          <MovieDetails title={movie.title} overview={movie.overview} maxSlice={80} />
+          <MovieDetails title={displayTitle} overview={displayOverview} maxSlice={80} />
           <MovieActions id_tmdb={movie.id_tmdb} />
         </div>
       </div>
