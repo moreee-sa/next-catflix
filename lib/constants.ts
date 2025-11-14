@@ -20,13 +20,19 @@ export const DESKTOP_PADDING: string = "0 50px";
 export const MAXDETAILS: number = 200;
 
 export type MovieType = {
-  _id: string;
-  id_tmdb: number;
+  id_tmdb: string;
   title: string;
   overview: string;
+  adult: boolean;
+
   poster_path: string;
   backdrop_path: string;
-  release_date: string;
+
   vote_average: number;
+  popularity: number;
   runtime: number;
+  release_date: string;
+
+  genres: string[];
+  media_path: string;
 };

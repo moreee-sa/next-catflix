@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FaPlay } from "react-icons/fa";
 import { TABLETBREAKPOINT, MAXDETAILS} from "@/lib/constants";
 import { useState, useEffect } from "react";
+import { MovieType } from "@/lib/constants";
 
 const Details = styled.span`
   color: white;
@@ -56,19 +57,8 @@ const PulsanteGuarda = styled.div`
   }
 `;
 
-interface Film {
-  _id: string;
-  id_tmdb: number;
-  title: string;
-  overview: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
-  runtime: number;
-}
-
 type MovieDetailsProps = {
-  movie: Film;
+  movie: MovieType;
 }
 
 function formatRuntime(minutes: number): string {
@@ -78,7 +68,7 @@ function formatRuntime(minutes: number): string {
 }
 
 export default function MovieDetails({ movie }: MovieDetailsProps) {
-  const id_movie: number = movie.id_tmdb;
+  const id_movie: string = movie.id_tmdb;
   const years: number = new Date(movie.release_date).getFullYear();
   const vote: string = movie.vote_average.toFixed(1);
   const runtimeFormatted: string = formatRuntime(movie.runtime);

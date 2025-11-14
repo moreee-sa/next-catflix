@@ -1,19 +1,9 @@
 import MovieStructure from "./MovieStructure";
 import SliderMovie from "../home/SliderMovie";
-
-interface Film {
-  _id: string;
-  id_tmdb: number;
-  title: string;
-  overview: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
-  runtime: number;
-}
+import { MovieType } from "@/lib/constants";
 
 type MoviePageProps = {
-  movie: Film;
+  movie: MovieType;
   blurDataURL?: string;
 };
 

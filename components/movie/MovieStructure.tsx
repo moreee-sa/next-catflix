@@ -4,6 +4,7 @@ import styled from "styled-components"
 import Image from "next/image";
 import MovieDetails from "./MovieDetails";
 import { APIURL, TABLETBREAKPOINT } from "@/lib/constants";
+import { MovieType } from "@/lib/constants";
 
 const BackdropOverlay = styled.div`
   position: absolute;
@@ -40,19 +41,8 @@ const MovieTitle = styled.h1`
   }
 `;
 
-interface Film {
-  _id: string;
-  id_tmdb: number;
-  title: string;
-  overview: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
-  runtime: number;
-}
-
 type MoviePageProps = {
-  movie: Film;
+  movie: MovieType;
   blurDataURL?: string;
 };
 
