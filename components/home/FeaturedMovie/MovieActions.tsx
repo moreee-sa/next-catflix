@@ -49,7 +49,7 @@ const PulsanteDettagli = styled(Pulsante)`
 `;
 
 type MovieActionsProps = {
-  id_tmdb: number;
+  id_tmdb: string;
 };
 
 export default function MovieActions({ id_tmdb }: MovieActionsProps) {

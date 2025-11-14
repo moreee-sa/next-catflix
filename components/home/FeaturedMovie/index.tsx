@@ -3,17 +3,7 @@
 import Image from "next/image";
 import MovieDetails from "./MovieDetails";
 import MovieActions from "./MovieActions";
-
-interface Film {
-  _id: string;
-  id_tmdb: number;
-  title: string;
-  overview: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
-  runtime: number;
-};
+import { MovieType } from "@/lib/constants";
 
 interface ImageBackdrop {
   imageUrl: string;
@@ -21,7 +11,7 @@ interface ImageBackdrop {
 }
 
 type FeaturedMovieProps = {
-  movie: Film;
+  movie: MovieType;
   imagebackdrop: ImageBackdrop;
 }
 
