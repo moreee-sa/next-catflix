@@ -26,9 +26,9 @@ export default async function HomePage() {
         <>
           <FeaturedMovie movie={featured_movie} imagebackdrop={{ imageUrl, blurDataURL }} />
           <div className="flex flex-col gap-5 my-5">
-            <SliderMovie pagina={1} titoloCategoria="Titoli recenti" />
-            <SliderMovie pagina={2} titoloCategoria="Altri titoli" />
-            <SliderMovie pagina={3} titoloCategoria="Altri Film" />
+            <SliderMovie endpoint="popular" titoloCategoria="Titoli recenti" />
+            {/* <SliderMovie endpoint="popular" titoloCategoria="Altri titoli" /> */}
+            {/* <SliderMovie endpoint="popular" titoloCategoria="Altri Film" /> */}
           </div>
           <InfoBanner />
         </>

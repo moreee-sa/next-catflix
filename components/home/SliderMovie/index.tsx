@@ -5,29 +5,35 @@ import { getBlurData } from "@/lib/getBlurData";
 import { MovieType } from "@/lib/constants";
 
 type SliderMovieProps = {
-  pagina: number;
   titoloCategoria: string;
-  categoria?: string;
+  endpoint: string; // 'popular', 'top_rated', 'recent'
 }
 
-export default async function SliderMovie({ pagina, titoloCategoria, categoria }: SliderMovieProps) {
+export default async function SliderMovie({ titoloCategoria, endpoint }: SliderMovieProps) {
   try {
-    if (pagina <= 0) notFound();
-    // Movie Request
-    const res = await fetch(`${APIURL}/movies?pagina=${pagina}`);
+    // URL dinamico basato sull'endpoint
+    const url = `${APIURL}/movie/${endpoint}`;
+
+    console.log(url)
+
+    const res = await fetch(url);
     if (!res || !res.ok) notFound();
     const data = await res.json();
-    const movie: MovieType[] = data.Film.Film;
+    console.log(data)
 
-    // Movies BlurData
+    const movies: MovieType[] = data.Film;
+
+    console.log(movies)
+
+    // Genera blurData
     const MoviesWithBlur = await Promise.all(
-      movie.map(async (movie) => {
+      movies.map(async (movie) => {
         const imageUrl = `${APIURL}/poster/${movie.poster_path}`;
         try {
           const blurDataURL = await getBlurData(imageUrl);
           return { ...movie, blurDataURL };
-        } catch (e) {
-          return { ...movie }; // fallback se fallisce
+        } catch {
+          return { ...movie };
         }
       })
     );

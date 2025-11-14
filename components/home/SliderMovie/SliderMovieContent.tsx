@@ -83,14 +83,11 @@ const ArrowButton = styled.div`
   }
 `;
 
-type Film = Pick<
-  MovieType,
-  "_id" | "id_tmdb" | "title" | "overview" | "poster_path"
-> & { blurDataURL?: string; }
+export type MovieWithBlur = MovieType & { blurDataURL?: string };
 
 interface SliderProps {
   titolo: string;
-  movies: Film[];
+  movies: MovieWithBlur[];
 }
 
 export default function SliderMovieContent({ titolo, movies }: SliderProps) {
@@ -122,7 +119,7 @@ export default function SliderMovieContent({ titolo, movies }: SliderProps) {
         </ArrowContainer>
         <CardContainer ref={scrollRef}>
           {movies.map((movie, i) => (
-          <Link key={movie._id} href={`/movie/${movie.id_tmdb}`}>
+          <Link key={movie.id_tmdb} href={`/movie/${movie.id_tmdb}`}>
             <Card style={{ marginLeft: i === 0 ? "20px" : "0" }} >
               <Image
                 src={`${APIURL}/poster/${movie.poster_path}`}
