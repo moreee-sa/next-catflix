@@ -6,12 +6,13 @@ import { MovieType } from "@/lib/constants";
 
 type SliderMovieProps = {
   titoloCategoria: string;
-  endpoint: string; // 'popular', 'top_rated', 'recent'
+  endpoint?: string; // 'popular', 'top_rated', 'recent'
 }
 
-export default async function SliderMovie({ titoloCategoria, endpoint }: SliderMovieProps) {
+export default async function SliderMovie({ titoloCategoria, endpoint = "popular" }: SliderMovieProps) {
+  let MoviesWithBlur: (MovieType & { blurDataURL?: string })[] | undefined;
+
   try {
-    // URL dinamico basato sull'endpoint
     const url = `${APIURL}/movie/${endpoint}`;
 
     const res = await fetch(url);
@@ -20,7 +21,7 @@ export default async function SliderMovie({ titoloCategoria, endpoint }: SliderM
     const movies: MovieType[] = data.Film;
 
     // Genera blurData
-    const MoviesWithBlur = await Promise.all(
+    MoviesWithBlur = await Promise.all(
       movies.map(async (movie) => {
         const imageUrl = `${APIURL}/poster/${movie.poster_path}`;
         try {
@@ -32,10 +33,9 @@ export default async function SliderMovie({ titoloCategoria, endpoint }: SliderM
       })
     );
 
-    return (
-      <SliderMovieContent titolo={titoloCategoria} movies={MoviesWithBlur} />
-    )
   } catch {
-    notFound();
+    MoviesWithBlur = undefined;
   }
+
+  return <SliderMovieContent titolo={titoloCategoria} movies={MoviesWithBlur ?? []} />;
 }

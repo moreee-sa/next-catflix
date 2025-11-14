@@ -15,18 +15,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const id_tmdb = Number(slug);
 
-  // Titolo di fallback
   const fallbackTitle = "Film";
 
   try {
     const res = await fetch(`${APIURL}/movie/${id_tmdb}`, {
-      next: { revalidate: 3600 } // Cache per migliorare performance
+      next: { revalidate: 3600 },
     });
     
     if (!res.ok) {
-      return {
-        title: `${fallbackTitle} | Catflix`,
-      };
+      return { title: `${fallbackTitle} | Catflix` };
     }
 
     const movie: MovieType = await res.json();
@@ -35,10 +32,8 @@ export async function generateMetadata({
       title: `${movie.title} | Catflix`,
       description: movie.overview,
     };
-  } catch (error) {
-    return {
-      title: `${fallbackTitle} | Catflix`,
-    };
+  } catch {
+    return { title: `${fallbackTitle} | Catflix` };
   }
 }
 
@@ -50,21 +45,25 @@ export default async function MovieSlug({
   const { slug } = await params;
   const id_tmdb = Number(slug);
 
+  let movie: MovieType;
+  let blurDataURL: string | undefined;
+
+  // Fetch del film
   try {
     const res = await fetch(`${APIURL}/movie/${id_tmdb}`);
     if (!res || !res.ok) notFound();
-
-    const movie: MovieType = await res.json();
-
-    try {
-      const imageUrl = `${APIURL}/backdrop/${movie.backdrop_path}`;
-      const blurDataURL = await getBlurData(imageUrl);
-
-      return <MoviePage movie={movie} blurDataURL={blurDataURL} />;
-    } catch {
-      return <MoviePage movie={movie} />;
-    }
+    movie = await res.json();
   } catch {
     notFound();
   }
+
+  // Genera blurData
+  try {
+    const imageUrl = `${APIURL}/backdrop/${movie.backdrop_path}`;
+    blurDataURL = await getBlurData(imageUrl);
+  } catch {
+    blurDataURL = undefined;
+  }
+
+  return <MoviePage movie={movie} blurDataURL={blurDataURL} />;
 }
