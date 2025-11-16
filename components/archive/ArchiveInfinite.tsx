@@ -47,7 +47,11 @@ export default function ArchiveInfinite({ initialArchive, limit }: ArchiveInfini
           loadNextPage();
         }
       },
-      { root: null, rootMargin: '0px', threshold: 1.0 }
+      {
+        root: null,
+        rootMargin: '40px',
+        threshold: 0.1,
+      }
     );
 
     if (currentRef) observer.observe(currentRef);
