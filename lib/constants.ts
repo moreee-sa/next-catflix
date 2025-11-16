@@ -43,3 +43,18 @@ export type MovieDetailsProps = {
   overview?: string;
   maxSlice?: number;
 };
+
+export type MovieArchiveMovie = {
+  id_tmdb: string;
+  title: string;
+  poster_path: string;
+  blurDataURL?: string;
+};
+
+export type MovieArchiveType = {
+  page: number;
+  limit: number;
+  total: number;
+  has_next: boolean;
+  results: MovieArchiveMovie[];
+};
