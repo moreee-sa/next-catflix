@@ -13,9 +13,7 @@ export default async function Archive() {
   let list_movie: MovieArchiveType;
 
   try {
-    const res = await fetch(`${APIURL}/archive?page=${page}&limit=${limit}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(`${APIURL}/archive?page=${page}&limit=${limit}`);
 
     if (!res || !res.ok) notFound();
     list_movie = await res.json();

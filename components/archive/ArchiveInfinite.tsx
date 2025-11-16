@@ -21,9 +21,7 @@ export default function ArchiveInfinite({ initialArchive, limit }: ArchiveInfini
     const nextPage = page + 1;
 
     try {
-      const res = await fetch(`${APIURL}/archive?page=${nextPage}&limit=${limit}`, {
-        cache: 'no-store',
-      });
+      const res = await fetch(`${APIURL}/archive?page=${nextPage}&limit=${limit}`);
       if (!res.ok) return;
 
       const newData: MovieArchiveType = await res.json();
