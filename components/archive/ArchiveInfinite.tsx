@@ -26,26 +26,13 @@ export default function ArchiveInfinite({ initialArchive, limit }: ArchiveInfini
 
       const newData: MovieArchiveType = await res.json();
 
-      const newResultsWithBlur = await Promise.all(
-        newData.results.map(async (movie) => {
-          try {
-            const blurRes = await fetch(`/api/blur?url=/poster/${movie.poster_path}`);
-            const data = await blurRes.json();
-            return { ...movie, blurDataURL: data.blurDataURL };
-          } catch {
-            return movie;
-          }
-        })
-      );
-
       setArchive((prev) => ({
         ...newData,
-        results: [...prev.results, ...newResultsWithBlur],
+        results: [...prev.results, ...newData.results],
       }));
-
       setPage(nextPage);
     } catch (err) {
-      console.error("Errore fetch nuova pagina", err);
+      console.error('Errore fetch nuova pagina', err);
     } finally {
       setLoading(false);
     }
@@ -60,11 +47,7 @@ export default function ArchiveInfinite({ initialArchive, limit }: ArchiveInfini
           loadNextPage();
         }
       },
-      {
-        root: null,
-        rootMargin: '40px',
-        threshold: 0.1,
-      }
+      { root: null, rootMargin: '0px', threshold: 1.0 }
     );
 
     if (currentRef) observer.observe(currentRef);
